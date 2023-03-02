@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "name": "impatient-care",
+  "version": "0.0.0",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "client:dev": "yarn workspace client dev",
+    "server:start": "yarn workspace server start"
+  }
+}
