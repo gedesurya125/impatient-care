@@ -1,5 +1,6 @@
 import lodash from 'lodash'
-
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
 
 
 import { typeDef as patient, resolvers as patientResolvers } from './patient.js'
