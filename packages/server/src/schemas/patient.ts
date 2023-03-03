@@ -1,3 +1,4 @@
+
 export const typeDef = `#graphql
   type Patient {
     id: ID!
@@ -36,36 +37,7 @@ export const typeDef = `#graphql
 
 export const resolvers = {
   Query: {
-    patients: () => patients,
+    patients: async (parent: any, args: any, contextValue: any, info: any) => await contextValue.prismaClient.patient.findMany(),
   },
 };
-
-
-// Fake data
-const patients = [
-  {
-    id: 1,
-    name: 'person one',
-    age: 29,
-    gender: 'male'
-  },
-  {
-    id: 2,
-    name: 'person one',
-    age: 29,
-    gender: 'male'
-  },
-  {
-    id: 3,
-    name: 'person one',
-    age: 29,
-    gender: 'male'
-  },
-  {
-    id: 3,
-    name: 'person one',
-    age: 29,
-    gender: 'male'
-  }
-]
 
