@@ -3,7 +3,6 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 import { typeDefs, resolvers } from './schemas/index.js'
 import { prismaClient } from "../prisma/client.js";
 
-
 // use `prisma` in your application to read and write data in your DB
 
 // A schema is a collection of type definitions (hence "typeDefs")
