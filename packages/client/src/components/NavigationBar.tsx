@@ -42,8 +42,6 @@ const NavigationLinkItem = ({ to, children, sx }: PageLinkProps) => {
 
   const isActive = removeSlash(router.pathname) === removeSlash(to);
 
-  console.log("this is the pathname and the to", router.pathname, to);
-
   return (
     <PageLink
       to={to}

@@ -1,6 +1,12 @@
 // styles
 import "../styles/globals.css";
 
+// external components
+import { ApolloProvider } from "@apollo/client";
+
+// local components
+import client from "apollo/client";
+
 // fonts
 import "../styles/fonts/Qucksand.css";
 
@@ -16,8 +22,10 @@ import { MainLayout } from "layouts";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider theme={theme} config={config}>
-      <MainLayout Component={Component} pageProps={pageProps} />
-    </ThemeProvider>
+    <ApolloProvider client={client}>
+      <ThemeProvider theme={theme} config={config}>
+        <MainLayout Component={Component} pageProps={pageProps} />
+      </ThemeProvider>
+    </ApolloProvider>
   );
 }
