@@ -14,10 +14,10 @@ export const navigationBarData: navigationBarLink[] = [
   },
   {
     label: "patient list",
-    to: "/patient-list"
+    to: "/patient-list/"
   },
   {
     label: "marked patients",
-    to: "/marked-patients"
+    to: "/marked-patients/"
   }
 ]

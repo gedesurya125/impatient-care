@@ -2,6 +2,7 @@ import React from "react";
 
 // External Components
 import { Box } from "@gedesurya125/surya-ui";
+import { useRouter } from "next/router";
 
 // Local Components
 import { PageLink } from "./PageLink";
@@ -26,23 +27,30 @@ export const NavigationBar = () => {
     >
       {navigationBarData.map((data, index) => {
         return (
-          <NavigationLink to={data.to} key={index}>
+          <NavigationLinkItem to={data.to} key={index}>
             {data.label}
-          </NavigationLink>
+          </NavigationLinkItem>
         );
       })}
     </Box>
   );
 };
 
-const NavigationLink = ({ to, children, sx }: PageLinkProps) => {
+const NavigationLinkItem = ({ to, children, sx }: PageLinkProps) => {
+  const router = useRouter();
+  const removeSlash = (path: string) => path.replace(/\//g, "");
+
+  const isActive = removeSlash(router.pathname) === removeSlash(to);
+
+  console.log("this is the pathname and the to", router.pathname, to);
+
   return (
     <PageLink
       to={to}
       sx={{
         fontFamily: "body.bold",
         textDecoration: "none",
-        color: "text",
+        color: isActive ? "secondary" : "text",
         lineHeight: 2,
         fontSize: [null, "1.5rem"],
         ":hover": {
