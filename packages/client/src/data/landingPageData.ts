@@ -1,5 +1,5 @@
 
-import type { SeoProps } from "src/components"
+import type { SeoProps } from "components"
 
 
 interface LandingPageProps {

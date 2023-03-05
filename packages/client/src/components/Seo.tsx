@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import { getHostUrl } from "src/helper/getHostUrl";
+import { getHostUrl } from "helper/getHostUrl";
 
 export interface SeoProps {
   title: string;

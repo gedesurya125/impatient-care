@@ -4,8 +4,6 @@ import React from "react";
 import { Box } from "@gedesurya125/surya-ui";
 
 // Local Components
-import { Header } from "src/components/Header";
-
 interface MainLayoutProps {
   Component: any;
   pageProps: any;
