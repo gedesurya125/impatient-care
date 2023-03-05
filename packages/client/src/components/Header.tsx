@@ -8,7 +8,7 @@ export const Header = () => {
     <Box
       sx={{
         gridColumn: [null, "1/ span 2"],
-        bg: "yellow",
+        bg: "secondary",
         px: [null, "small"],
       }}
     >

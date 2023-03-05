@@ -1,13 +1,21 @@
 // External Components
-import { GridTemplate, Heading } from "@gedesurya125/surya-ui";
+import { GridTemplate, Heading, Box } from "@gedesurya125/surya-ui";
 
 // Local Components
 
 export default function Home() {
   return (
-    <>
+    <Box
+      as="main"
+      id="home-page"
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       <Headline />
-    </>
+    </Box>
   );
 }
 
@@ -16,9 +24,9 @@ const Headline = () => (
     as="h2"
     sx={{
       fontSize: ["2rem", "3rem"],
-      bg: "blue",
+      fontFamily: "body.bold",
     }}
   >
-    I Gede Surya Adi Pranata
+    Welcome the my application
   </Heading>
 );

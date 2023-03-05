@@ -1,5 +1,8 @@
 import type { Theme } from 'theme-ui'
 
+import { colors } from './colors'
+
+
 
 const theme: Theme = {
   fonts: {
@@ -10,7 +13,7 @@ const theme: Theme = {
     },
   },
   colors: {
-    text: '#222222'
+    ...colors,
   },
   space: {
     small: '2rem',

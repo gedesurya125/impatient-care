@@ -9,13 +9,14 @@ export const Footer = () => {
       as="footer"
       sx={{
         gridColumn: [null, "1/ span 2 "],
-        bg: "green",
+        bg: "secondary",
         px: [null, "small"],
       }}
     >
       <Paragraph
         sx={{
-          fontFamily: "body.normal",
+          fontFamily: "body.bold",
+          textAlign: "center",
           lineHeight: 2,
           fontSize: [null, "1.3rem"],
         }}

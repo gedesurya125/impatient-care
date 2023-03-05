@@ -20,6 +20,8 @@ export const NavigationBar = () => {
         gridColumn: ["null", "1/ span 2"],
         display: "flex",
         px: "small",
+        border: ({ colors }) => `solid ${colors?.primary}`,
+        borderWidth: "2px 0",
       }}
     >
       {navigationBarData.map((data, index) => {
@@ -43,7 +45,9 @@ const NavigationLink = ({ to, children, sx }: PageLinkProps) => {
         color: "text",
         lineHeight: 2,
         fontSize: [null, "1.5rem"],
-
+        ":hover": {
+          color: "secondary",
+        },
         "~ .__navigation-link": {
           ml: "2rem",
         },
