@@ -4,5 +4,15 @@ import React from "react";
 import { Box } from "@gedesurya125/surya-ui";
 
 export const Footer = () => {
-  return <Box>&copy; by: I Gede Surya Adi Pranata</Box>;
+  return (
+    <Box
+      as="footer"
+      sx={{
+        gridColumn: [null, "1/ span 2 "],
+        bg: "green",
+      }}
+    >
+      &copy; by: I Gede Surya Adi Pranata
+    </Box>
+  );
 };
