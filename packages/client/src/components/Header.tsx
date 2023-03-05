@@ -1,7 +1,7 @@
 import React from "react";
 
 // External Components
-import { Box } from "@gedesurya125/surya-ui";
+import { Box, Paragraph } from "@gedesurya125/surya-ui";
 
 export const Header = () => {
   return (
@@ -9,9 +9,19 @@ export const Header = () => {
       sx={{
         gridColumn: [null, "1/ span 2"],
         bg: "yellow",
+        px: [null, "small"],
       }}
     >
-      Welcome to impatient-care application
+      <Paragraph
+        sx={{
+          fontFamily: "body.medium",
+          lineHeight: 1.5,
+          fontSize: [null, "1.3rem"],
+          textAlign: "center",
+        }}
+      >
+        Welcome to impatient-care application
+      </Paragraph>
     </Box>
   );
 };

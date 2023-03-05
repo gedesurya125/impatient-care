@@ -7,7 +7,7 @@ export const LeftSideBar = () => {
     <Box
       as="aside"
       sx={{
-        width: [null, "30rem"],
+        width: [null, "20rem"],
         bg: "teal",
       }}
     >

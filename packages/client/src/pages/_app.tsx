@@ -1,3 +1,9 @@
+// styles
+import "../styles/globals.css";
+
+// fonts
+import "../styles/fonts/Qucksand.css";
+
 import type { AppProps } from "next/app";
 
 import { ThemeProvider } from "@gedesurya125/surya-ui";

@@ -1,7 +1,7 @@
 import React from "react";
 
 // External Components
-import { Box } from "@gedesurya125/surya-ui";
+import { Box, Paragraph } from "@gedesurya125/surya-ui";
 
 export const Footer = () => {
   return (
@@ -10,9 +10,18 @@ export const Footer = () => {
       sx={{
         gridColumn: [null, "1/ span 2 "],
         bg: "green",
+        px: [null, "small"],
       }}
     >
-      &copy; by: I Gede Surya Adi Pranata
+      <Paragraph
+        sx={{
+          fontFamily: "body.normal",
+          lineHeight: 2,
+          fontSize: [null, "1.3rem"],
+        }}
+      >
+        &copy; by: I Gede Surya Adi Pranata
+      </Paragraph>
     </Box>
   );
 };
