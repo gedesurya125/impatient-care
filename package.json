@@ -11,6 +11,7 @@
     "client:dev": "yarn workspace client dev",
     "server:start": "yarn workspace server start",
     "prisma:seed": "yarn workspace server prisma db seed",
-    "prisma:reset": "yarn workspace server db:drop"
+    "prisma:reset": "yarn workspace server db:drop",
+    "prisma:generate": "yarn workspace server prisma generate"
   }
 }

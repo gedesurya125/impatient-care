@@ -24,14 +24,30 @@ export default function PatientList() {
       }}
     >
       <Headline />
-      <PatientListTable />
+      <Box
+        sx={{
+          width: "100%",
+          overflow: "auto",
+          border: "2px solid",
+          borderColor: "primary",
+          minHeight: "70vh",
+          borderRadius: "medium",
+        }}
+      >
+        <PatientListTable />
+      </Box>
     </Box>
   );
 }
 
 const PatientListTable = () => {
   return (
-    <Box as="table">
+    <Box
+      as="table"
+      sx={{
+        width: "max-content",
+      }}
+    >
       <TableHead />
     </Box>
   );
@@ -40,9 +56,24 @@ const PatientListTable = () => {
 const TableHead = () => {
   const columnTitles = [
     { label: "No" },
-    { label: "Name" },
-    { label: "Age" },
-    { label: "Gender" },
+    { label: "Kode AG" },
+    { label: "Sampling Comstok" },
+    { label: "Ruang Perawatan" },
+    { label: "Tanggla Pengkajian" },
+    { label: "Nomor Kamar / BED" },
+    { label: "Tanggal MRS" },
+    { label: "No RM" },
+    { label: "Nama Pasien" },
+    { label: "Tanggal Lahir Pasien" },
+    { label: "Diagonis Medis" },
+    { label: "Diet" },
+    { label: "BB saat MRS" },
+    { label: "Lingkar Lengan (cm)" },
+    { label: "BB Estimasi" },
+    { label: "Berat Badan Aktual (kg)" },
+    { label: "Tinggi Berat Badan Saat MRS(cm)" },
+    { label: "IMT/ % Water Low" },
+    { label: "IMT" },
   ];
   return (
     <Box as="thead">

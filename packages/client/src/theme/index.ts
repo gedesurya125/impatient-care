@@ -18,6 +18,9 @@ const theme: Theme = {
   space: {
     small: '2rem',
     medium: '4rem'
+  },
+  radii: {
+    medium: '8px'
   }
 }
 

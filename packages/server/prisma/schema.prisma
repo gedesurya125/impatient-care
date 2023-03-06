@@ -11,8 +11,22 @@ datasource db {
 }
 
 model Patient {
-  id     String @id @default(auto()) @map("_id") @db.ObjectId
-  name   String
-  age    Int
-  gender String
+  id               String @id @default(auto()) @map("_id") @db.ObjectId
+  codeAg           String
+  roomName         String
+  assessmentDate   String
+  roomNumber       Int
+  mrsDate          String
+  rmNumber         Int
+  name             String
+  dob              String
+  medicalDiagnose  String
+  diet             String
+  weightMrs        Float
+  armCircumference Float
+  estimatedWeight  Float
+  actualWeight     Float
+  heightMrs        Float
+  imtOrWaterLow    String
+  imt              Float
 }

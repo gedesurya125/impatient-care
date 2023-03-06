@@ -2,9 +2,23 @@
 export const typeDef = `#graphql
   type Patient {
     id: ID!
+    codeAg:String
+    roomName:String
+    assessmentDate:String
+    roomNumber: Int
+    mrsDate: String
+    rmNumber: Int
     name:String
-    age:Int
-    gender: String
+    dob:String
+    medicalDiagnose: String
+    diet:String
+    weightMrs:Float
+    armCircumference:Float
+    estimatedWeight:Float
+    actualWeight:Float
+    heightMrs:Float
+    imtOrWaterLow:String
+    imt:Float
   }
 
   extend type Query {
@@ -12,15 +26,43 @@ export const typeDef = `#graphql
   }
 
   input CreatePatient {
-    name: String
-    age: Int
-    gender: Int
+    codeAg:String
+    roomName:String
+    assessmentDate:String
+    roomNumber: Int
+    mrsDate: String
+    rmNumber: Int
+    name:String
+    dob:String
+    medicalDiagnose: String
+    diet:String
+    weightMrs:Float
+    armCircumference:Float
+    estimatedWeight:Float
+    actualWeight:Float
+    heightMrs:Float
+    imtOrWaterLow:String
+    imt:Float
   }
 
   input UpdatePatient {
-    name: String
-    age: Int
-    gender: Int
+    codeAg:String
+    roomName:String
+    assessmentDate:String
+    roomNumber: Int
+    mrsDate: String
+    rmNumber: Int
+    name:String
+    dob:String
+    medicalDiagnose: String
+    diet:String
+    weightMrs:Float
+    armCircumference:Float
+    estimatedWeight:Float
+    actualWeight:Float
+    heightMrs:Float
+    imtOrWaterLow:String
+    imt:Float
   }
 
   type DeletedPatient {
