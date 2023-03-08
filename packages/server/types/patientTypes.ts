@@ -1,0 +1,20 @@
+export type PatientType = {
+  codeAg: string;
+  isSamplingComstock: boolean;
+  roomName: string;
+  assessmentDate: string;
+  roomNumber: number;
+  mrsDate: string;
+  rmNumber: number;
+  name: string;
+  dob: string;
+  medicalDiagnose: string;
+  diet: string;
+  weightMrs: number;
+  armCircumference: number;
+  estimatedWeight: number;
+  actualWeight: number;
+  heightMrs: number;
+  imtOrWaterLow: string;
+  imt: number;
+};

@@ -1,18 +1,31 @@
-import { useQuery, gql } from "@apollo/client";
-
+import { useQuery, gql } from '@apollo/client';
 
 const PATIENTS = gql`
-query Patients {
-  patients {
-    age
-    gender
-    id
-    name
+  query Patients {
+    patients {
+      id
+      codeAg
+      isSamplingComstock
+      roomName
+      assessmentDate
+      roomNumber
+      mrsDate
+      rmNumber
+      name
+      dob
+      medicalDiagnose
+      diet
+      weightMrs
+      armCircumference
+      estimatedWeight
+      actualWeight
+      heightMrs
+      imtOrWaterLow
+      imt
+    }
   }
-}
-`
-
+`;
 
 export const usePatients = () => {
-  return useQuery(PATIENTS)
-}
+  return useQuery(PATIENTS);
+};

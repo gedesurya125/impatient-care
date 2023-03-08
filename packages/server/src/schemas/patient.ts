@@ -3,6 +3,7 @@ export const typeDef = `#graphql
   type Patient {
     id: ID!
     codeAg:String
+    isSamplingComstock: Boolean
     roomName:String
     assessmentDate:String
     roomNumber: Int
@@ -27,6 +28,7 @@ export const typeDef = `#graphql
 
   input CreatePatient {
     codeAg:String
+    isSamplingComstock: Boolean
     roomName:String
     assessmentDate:String
     roomNumber: Int
@@ -47,6 +49,7 @@ export const typeDef = `#graphql
 
   input UpdatePatient {
     codeAg:String
+    isSamplingComstock: Boolean
     roomName:String
     assessmentDate:String
     roomNumber: Int
@@ -69,7 +72,7 @@ export const typeDef = `#graphql
     id:ID!
   }
 
-  type Mutation {
+  extend type Mutation {
     createPatient(input:CreatePatient!):Patient!
     updatePatient(id:ID!, input:UpdatePatient!):Patient!
     deletePatient(id:ID!):DeletedPatient!

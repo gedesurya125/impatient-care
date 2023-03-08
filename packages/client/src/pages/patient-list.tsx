@@ -1,37 +1,35 @@
-import React from "react";
+import React from 'react';
 
 // External Components
-import { GridTemplate, Heading, Box } from "@gedesurya125/surya-ui";
-import client from "apollo/client";
-import { gql } from "@apollo/client";
+import { GridTemplate, Heading, Box } from '@gedesurya125/surya-ui';
+import { ThemeUIStyleObject } from 'theme-ui';
+
+import { PatientType } from '../../../server/types/patientTypes';
 
 // Local Components
 
 // Data
-import { usePatients } from "apollo/query";
+import { usePatients } from 'apollo/query';
 
 export default function PatientList() {
-  const { data, loading } = usePatients();
-
-  console.log("this is the patient data bro", data);
-
   return (
     <Box
       as="main"
       id="home-page"
       sx={{
-        p: "small",
+        p: 'small',
       }}
     >
       <Headline />
       <Box
         sx={{
-          width: "100%",
-          overflow: "auto",
-          border: "2px solid",
-          borderColor: "primary",
-          minHeight: "70vh",
-          borderRadius: "medium",
+          width: '100%',
+          overflow: 'auto',
+          border: '2px solid',
+          borderColor: 'primary',
+          minHeight: '70vh',
+          borderRadius: 'medium',
+          p: 'xSmall',
         }}
       >
         <PatientListTable />
@@ -40,49 +38,67 @@ export default function PatientList() {
   );
 }
 
+const Headline = () => (
+  <Heading
+    as="h2"
+    sx={{
+      fontSize: ['2rem', '3rem'],
+      fontFamily: 'body.bold',
+    }}
+  >
+    Welcome to Patient List
+  </Heading>
+);
+
 const PatientListTable = () => {
   return (
     <Box
       as="table"
       sx={{
-        width: "max-content",
+        width: 'max-content',
+        borderCollapse: 'collapse',
       }}
     >
       <TableHead />
+      <TableBody />
     </Box>
   );
 };
 
 const TableHead = () => {
   const columnTitles = [
-    { label: "No" },
-    { label: "Kode AG" },
-    { label: "Sampling Comstok" },
-    { label: "Ruang Perawatan" },
-    { label: "Tanggla Pengkajian" },
-    { label: "Nomor Kamar / BED" },
-    { label: "Tanggal MRS" },
-    { label: "No RM" },
-    { label: "Nama Pasien" },
-    { label: "Tanggal Lahir Pasien" },
-    { label: "Diagonis Medis" },
-    { label: "Diet" },
-    { label: "BB saat MRS" },
-    { label: "Lingkar Lengan (cm)" },
-    { label: "BB Estimasi" },
-    { label: "Berat Badan Aktual (kg)" },
-    { label: "Tinggi Berat Badan Saat MRS(cm)" },
-    { label: "IMT/ % Water Low" },
-    { label: "IMT" },
+    { label: 'No' },
+    { label: 'Kode AG' },
+    { label: 'Sampling Comstok' },
+    { label: 'Ruang Perawatan' },
+    { label: 'Tanggla Pengkajian' },
+    { label: 'Nomor Kamar / BED' },
+    { label: 'Tanggal MRS' },
+    { label: 'No RM' },
+    { label: 'Nama Pasien' },
+    { label: 'Tanggal Lahir Pasien' },
+    { label: 'Diagonis Medis' },
+    { label: 'Diet' },
+    { label: 'BB saat MRS' },
+    { label: 'Lingkar Lengan (cm)' },
+    { label: 'BB Estimasi' },
+    { label: 'Berat Badan Aktual (kg)' },
+    { label: 'Tinggi Berat Badan Saat MRS(cm)' },
+    { label: 'IMT/ % Water Low' },
+    { label: 'IMT' },
   ];
   return (
     <Box as="thead">
       <Box as="tr">
-        {columnTitles.map(({ label }, index) => {
+        {columnTitles.map(({ label }) => {
           return (
-            <Box as="th" key={label}>
-              {label}
-            </Box>
+            <TableRowItem
+              key={label}
+              text={label}
+              sx={{
+                fontFamily: 'body.bold',
+              }}
+            />
           );
         })}
       </Box>
@@ -90,14 +106,94 @@ const TableHead = () => {
   );
 };
 
-const Headline = () => (
-  <Heading
-    as="h2"
-    sx={{
-      fontSize: ["2rem", "3rem"],
-      fontFamily: "body.bold",
-    }}
-  >
-    Welcome to Patient List
-  </Heading>
-);
+const TableBody = () => {
+  const { data, loading } = usePatients();
+  console.log(data);
+
+  if (loading || data?.patients?.length === 0) return null;
+
+  return (
+    <Box as="tbody">
+      {data.patients.map((data: PatientType, index: number) => {
+        return (
+          <TableBodyRow key={index} number={index + 1} patientData={data} />
+        );
+      })}
+    </Box>
+  );
+};
+
+const TableBodyRow = ({
+  patientData: {
+    codeAg,
+    isSamplingComstock,
+    roomName,
+    assessmentDate,
+    roomNumber,
+    mrsDate,
+    rmNumber,
+    name,
+    dob,
+    medicalDiagnose,
+    diet,
+    weightMrs,
+    armCircumference,
+    estimatedWeight,
+    actualWeight,
+    heightMrs,
+    imtOrWaterLow,
+    imt,
+  },
+  number,
+}: {
+  patientData: PatientType;
+  number: number;
+}) => {
+  return (
+    <Box as="tr">
+      <TableRowItem text={number} />
+      <TableRowItem text={codeAg} />
+      <TableRowItem text={isSamplingComstock.toString()} />
+      <TableRowItem text={roomName} />
+      <TableRowItem text={assessmentDate} />
+      <TableRowItem text={roomNumber} />
+      <TableRowItem text={mrsDate} />
+      <TableRowItem text={rmNumber} />
+      <TableRowItem text={name} />
+      <TableRowItem text={dob} />
+      <TableRowItem text={medicalDiagnose} />
+      <TableRowItem text={diet} />
+      <TableRowItem text={weightMrs} />
+      <TableRowItem text={armCircumference} />
+      <TableRowItem text={estimatedWeight} />
+      <TableRowItem text={actualWeight} />
+      <TableRowItem text={heightMrs} />
+      <TableRowItem text={imtOrWaterLow} />
+      <TableRowItem text={imt} />
+    </Box>
+  );
+};
+
+const TableRowItem = ({
+  text,
+  sx,
+  ...props
+}: {
+  text: string | number;
+  sx?: ThemeUIStyleObject;
+}) => {
+  return (
+    <Box
+      as="td"
+      sx={{
+        border: '1px solid',
+        borderColor: 'primary',
+        p: [null, '0.3rem 0.4rem'],
+        ...sx,
+      }}
+      {...props}
+    >
+      {text}
+    </Box>
+  );
+};

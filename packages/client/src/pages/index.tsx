@@ -1,5 +1,5 @@
 // External Components
-import { GridTemplate, Heading, Box } from "@gedesurya125/surya-ui";
+import { GridTemplate, Heading, Box } from '@gedesurya125/surya-ui';
 
 // Local Components
 
@@ -9,9 +9,9 @@ export default function Home() {
       as="main"
       id="home-page"
       sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}
     >
       <Headline />
@@ -23,8 +23,8 @@ const Headline = () => (
   <Heading
     as="h2"
     sx={{
-      fontSize: ["2rem", "3rem"],
-      fontFamily: "body.bold",
+      fontSize: ['2rem', '3rem'],
+      fontFamily: 'body.bold',
     }}
   >
     Welcome the my application

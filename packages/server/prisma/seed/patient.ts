@@ -1,15 +1,16 @@
-import { PrismaClient } from "@prisma/client";
-import { faker } from "@faker-js/faker";
+import { PrismaClient } from '@prisma/client';
+import { faker } from '@faker-js/faker';
 
+import type { PatientType } from '../../types/patientTypes';
 
-const PATIENTS_NUMBER = 10
+const PATIENTS_NUMBER = 10;
 
 export async function seed(prismaClient: PrismaClient) {
-
-  const patientsData = []
+  const patientsData: PatientType[] = [];
   for (let i = 0; i < PATIENTS_NUMBER; i++) {
     patientsData.push({
       codeAg: faker.random.numeric(5),
+      isSamplingComstock: faker.datatype.boolean(),
       roomName: faker.color.human(),
       assessmentDate: faker.date.past().toISOString(),
       roomNumber: faker.datatype.number({ min: 1, max: 70 }),
@@ -25,13 +26,11 @@ export async function seed(prismaClient: PrismaClient) {
       actualWeight: faker.datatype.number({ min: 1, max: 70 }),
       heightMrs: faker.datatype.number({ min: 1, max: 70 }),
       imtOrWaterLow: faker.random.word(),
-      imt: faker.datatype.number({ min: 1, max: 70 })
-    })
+      imt: faker.datatype.number({ min: 1, max: 70 }),
+    });
   }
 
-
   await prismaClient.patient.createMany({
-    data: patientsData
-  })
-
+    data: patientsData,
+  });
 }
