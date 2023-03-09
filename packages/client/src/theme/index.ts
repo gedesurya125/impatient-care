@@ -23,6 +23,9 @@ const theme: Theme = {
       lineHeight: 1.4,
       px: ['0.6rem', '0.6rem'],
     },
+    select: {
+      variant: 'forms.input',
+    },
   },
   colors: {
     ...colors,

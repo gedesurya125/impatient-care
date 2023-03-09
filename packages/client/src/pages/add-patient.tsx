@@ -10,7 +10,6 @@ import { FormField } from 'components/formFields/';
 import { patientFields } from 'data';
 
 // Type
-import type { PatientField } from 'data';
 
 export default function AddPatient() {
   return (

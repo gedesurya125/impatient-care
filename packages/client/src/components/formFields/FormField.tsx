@@ -9,7 +9,7 @@ import { TextField } from '.';
 
 // Types
 import type { FormFieldTypes, OptionType } from 'types';
-import { TextFieldProps, RadioGroup } from '.';
+import { TextFieldProps, RadioGroup, SelectField } from '.';
 
 interface FormFieldsProps extends Omit<TextFieldProps, 'type'> {
   type: FormFieldTypes;
@@ -44,6 +44,10 @@ export const FormField = ({
           defaultValue={defaultValue}
           sx={sx}
         />
+      );
+    case 'select':
+      return (
+        <SelectField name={name} label={label} options={options} sx={sx} />
       );
     case 'radio':
       return <RadioGroup name={name} label={label} options={options} sx={sx} />;

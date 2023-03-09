@@ -1,13 +1,6 @@
-import type { FormFieldTypes, OptionType } from 'types';
+import type { FormFieldProps } from 'types';
 
-export interface PatientField {
-  label: string;
-  key: string;
-  type: FormFieldTypes;
-  options?: OptionType[];
-}
-
-export const patientFields: PatientField[] = [
+export const patientFields: FormFieldProps[] = [
   { label: 'No', key: 'no', type: 'number' },
   {
     label: 'Kode AG',
