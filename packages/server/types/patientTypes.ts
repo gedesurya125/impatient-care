@@ -3,9 +3,9 @@ export type PatientType = {
   isSamplingComstock: boolean;
   roomName: string;
   assessmentDate: string;
-  roomNumber: number;
+  roomNumber: string;
   mrsDate: string;
-  rmNumber: number;
+  rmNumber: string;
   name: string;
   dob: string;
   medicalDiagnose: string;
@@ -17,4 +17,5 @@ export type PatientType = {
   heightMrs: number;
   imtOrWaterLow: string;
   imt: number;
+  waterLow: number;
 };

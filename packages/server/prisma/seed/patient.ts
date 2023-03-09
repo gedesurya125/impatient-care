@@ -13,9 +13,9 @@ export async function seed(prismaClient: PrismaClient) {
       isSamplingComstock: faker.datatype.boolean(),
       roomName: faker.color.human(),
       assessmentDate: faker.date.past().toISOString(),
-      roomNumber: faker.datatype.number({ min: 1, max: 70 }),
+      roomNumber: faker.random.numeric(5),
       mrsDate: faker.date.past().toISOString(),
-      rmNumber: faker.datatype.number({ min: 1, max: 70 }),
+      rmNumber: faker.random.numeric(5),
       name: faker.name.fullName(),
       dob: faker.date.past().toISOString(),
       medicalDiagnose: faker.word.noun(),
@@ -27,6 +27,7 @@ export async function seed(prismaClient: PrismaClient) {
       heightMrs: faker.datatype.number({ min: 1, max: 70 }),
       imtOrWaterLow: faker.random.word(),
       imt: faker.datatype.number({ min: 1, max: 70 }),
+      waterLow: faker.datatype.number({ min: 1, max: 70 }),
     });
   }
 

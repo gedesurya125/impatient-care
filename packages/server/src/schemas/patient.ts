@@ -5,20 +5,21 @@ export const typeDef = `#graphql
     isSamplingComstock: Boolean
     roomName:String
     assessmentDate:String
-    roomNumber: Int
+    roomNumber: String
     mrsDate: String
-    rmNumber: Int
+    rmNumber: String
     name:String
     dob:String
     medicalDiagnose: String
     diet:String
-    weightMrs:Float # todo: alter to String
+    weightMrs:String
     armCircumference:Float
     estimatedWeight:Float
     actualWeight:Float
     heightMrs:Float
     imtOrWaterLow:String
     imt:Float
+    waterLow:Float
   }
 
   extend type Query {
@@ -30,20 +31,21 @@ export const typeDef = `#graphql
     isSamplingComstock: Boolean
     roomName:String
     assessmentDate:String
-    roomNumber: Int
+    roomNumber: String
     mrsDate: String
-    rmNumber: Int
+    rmNumber: String
     name:String
     dob:String
     medicalDiagnose: String
     diet:String
-    weightMrs:Float
+    weightMrs:String
     armCircumference:Float
     estimatedWeight:Float
     actualWeight:Float
     heightMrs:Float
     imtOrWaterLow:String
     imt:Float
+    waterLow:Float
   }
 
   input UpdatePatient {
@@ -51,20 +53,21 @@ export const typeDef = `#graphql
     isSamplingComstock: Boolean
     roomName:String
     assessmentDate:String
-    roomNumber: Int
+    roomNumber: String
     mrsDate: String
-    rmNumber: Int
+    rmNumber: String
     name:String
     dob:String
     medicalDiagnose: String
     diet:String
-    weightMrs:Float
+    weightMrs:String
     armCircumference:Float
     estimatedWeight:Float
     actualWeight:Float
     heightMrs:Float
     imtOrWaterLow:String
     imt:Float
+    waterLow:Float
   }
 
   type DeletedPatient {

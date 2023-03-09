@@ -16,9 +16,9 @@ model Patient {
   isSamplingComstock Boolean
   roomName           String
   assessmentDate     String
-  roomNumber         Int
+  roomNumber         String
   mrsDate            String
-  rmNumber           Int
+  rmNumber           String
   name               String
   dob                String
   medicalDiagnose    String
@@ -30,4 +30,5 @@ model Patient {
   heightMrs          Float
   imtOrWaterLow      String
   imt                Float
+  waterLow           Float
 }

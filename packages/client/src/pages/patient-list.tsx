@@ -117,12 +117,15 @@ const TableBodyRow = ({
     heightMrs,
     imtOrWaterLow,
     imt,
+    waterLow,
   },
   number,
 }: {
   patientData: PatientType;
   number: number;
 }) => {
+  console.log('this is waterlow', waterLow);
+
   return (
     <Box as="tr">
       <TableRowItem text={number} />
@@ -144,6 +147,7 @@ const TableBodyRow = ({
       <TableRowItem text={heightMrs} />
       <TableRowItem text={imtOrWaterLow} />
       <TableRowItem text={imt} />
+      <TableRowItem text={waterLow} />
     </Box>
   );
 };

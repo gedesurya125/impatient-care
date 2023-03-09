@@ -22,6 +22,7 @@ const PATIENTS = gql`
       heightMrs
       imtOrWaterLow
       imt
+      waterLow
     }
   }
 `;
