@@ -5,11 +5,11 @@ import { Box } from '@gedesurya125/surya-ui';
 import { ThemeUIStyleObject } from 'theme-ui';
 
 // Local Components
-import { TextField } from '.';
+import { TextField, RadioGroup, SelectField } from '.';
 
 // Types
 import type { FormFieldTypes, OptionType } from 'types';
-import { TextFieldProps, RadioGroup, SelectField } from '.';
+import type { TextFieldProps } from '.';
 
 interface FormFieldsProps extends Omit<TextFieldProps, 'type'> {
   type: FormFieldTypes;
@@ -48,6 +48,16 @@ export const FormField = ({
     case 'select':
       return (
         <SelectField name={name} label={label} options={options} sx={sx} />
+      );
+    case 'date':
+      return (
+        <TextField
+          type="date"
+          name={name}
+          label={label}
+          defaultValue={defaultValue}
+          sx={sx}
+        />
       );
     case 'radio':
       return <RadioGroup name={name} label={label} options={options} sx={sx} />;

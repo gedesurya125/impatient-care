@@ -10,7 +10,7 @@ export interface TextFieldProps {
   name: string;
   defaultValue?: string;
   sx?: ThemeUIStyleObject;
-  type?: 'text' | 'number';
+  type?: 'text' | 'number' | 'date';
 }
 
 export const TextField = ({
