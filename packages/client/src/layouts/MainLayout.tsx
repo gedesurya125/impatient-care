@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 // External Components
-import { Box } from "@gedesurya125/surya-ui";
+import { Box } from '@gedesurya125/surya-ui';
 
 // Local Components
 
@@ -11,7 +11,7 @@ import {
   LeftSideBar,
   NavigationBar,
   RightSideBar,
-} from "components";
+} from 'components';
 interface MainLayoutProps {
   Component: any;
   pageProps: any;
@@ -24,16 +24,26 @@ export const MainLayout = ({ Component, pageProps }: MainLayoutProps) => {
     <Box
       id="main-layout"
       sx={{
-        minHeight: "100vh",
-        display: "grid",
-        gridTemplateColumns: [null, "auto 1fr"],
-        gridTemplateRows: [null, "auto auto 1fr auto"],
+        minHeight: '100vh',
+        display: ['flex', 'grid'],
+        flexDirection: ['column', 'unset'],
+        gridTemplateColumns: [null, 'auto 1fr'],
+        gridTemplateRows: [null, 'auto auto 1fr auto'],
       }}
     >
       <Header />
       <NavigationBar />
       <LeftSideBar />
-      {getLayout(<Component {...pageProps} />)}
+      <Box
+        as="main"
+        id="home-page"
+        sx={{
+          p: 'small',
+          flex: 1,
+        }}
+      >
+        {getLayout(<Component {...pageProps} />)}
+      </Box>
       <Footer />
     </Box>
   );

@@ -5,17 +5,9 @@ import { GridTemplate, Heading, Box } from '@gedesurya125/surya-ui';
 
 export default function Home() {
   return (
-    <Box
-      as="main"
-      id="home-page"
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
+    <>
       <Headline />
-    </Box>
+    </>
   );
 }
 

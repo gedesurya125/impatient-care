@@ -14,16 +14,10 @@ import { createEmptyFormInitialValue } from 'utils';
 
 export default function AddPatient() {
   return (
-    <Box
-      as="main"
-      id="home-page"
-      sx={{
-        p: 'small',
-      }}
-    >
+    <>
       <Headline />
       <AddPatientForm />
-    </Box>
+    </>
   );
 }
 

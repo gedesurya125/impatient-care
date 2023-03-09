@@ -14,13 +14,7 @@ import { patientFields } from 'data';
 
 export default function PatientList() {
   return (
-    <Box
-      as="main"
-      id="home-page"
-      sx={{
-        p: 'small',
-      }}
-    >
+    <>
       <Headline />
       <Box
         sx={{
@@ -35,7 +29,7 @@ export default function PatientList() {
       >
         <PatientListTable />
       </Box>
-    </Box>
+    </>
   );
 }
 

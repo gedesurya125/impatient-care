@@ -14,12 +14,12 @@ const theme: Theme = {
   forms: {
     label: {
       fontFamily: 'body.medium',
-      fontSize: ['1rem', '1.2rem'],
+      fontSize: ['1.5rem', '1.5rem'],
       lineHeight: 1,
     },
     input: {
       fontFamily: 'body.normal',
-      fontSize: ['1rem', '1.3rem'],
+      fontSize: ['1.8rem', '1.8rem'],
       lineHeight: 1.4,
       px: ['0.6rem', '0.6rem'],
     },
@@ -30,7 +30,7 @@ const theme: Theme = {
   buttons: {
     primary: {
       fontFamily: 'body.bold',
-      fontSize: '1.5rem',
+      fontSize: '2rem',
       lineHeight: 1,
       width: 'min-content',
       whiteSpace: 'nowrap',
