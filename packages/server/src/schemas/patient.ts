@@ -70,14 +70,20 @@ export const typeDef = `#graphql
     waterLow:Float
   }
 
-  type DeletedPatient {
+  type DeletePatientResponse {
     id:ID!
   }
 
+  type CreatePatientResponse{
+    success: Boolean!
+    message: String!
+    data: Patient
+  }
+
   extend type Mutation {
-    createPatient(input:CreatePatient!):Patient!
-    updatePatient(id:ID!, input:UpdatePatient!):Patient!
-    deletePatient(id:ID!):DeletedPatient!
+    createPatient(input:CreatePatient!):CreatePatientResponse!
+    updatePatient(id:ID!, input:UpdatePatient!):CreatePatientResponse!
+    deletePatient(id:ID!):DeletePatientResponse!
   }
 `;
 
@@ -97,8 +103,17 @@ export const resolvers = {
       const patient = await contextValue.prismaClient.patient.create({
         data: input,
       });
-      console.log('this is patient newly created patient', patient);
-      return patient;
+      if (patient?.id)
+        return {
+          success: true,
+          message: 'patient created',
+          data: patient,
+        };
+      return {
+        success: false,
+        message: 'patient not created',
+        data: {},
+      };
     },
   },
 };
