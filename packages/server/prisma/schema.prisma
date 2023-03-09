@@ -23,7 +23,7 @@ model Patient {
   dob                String
   medicalDiagnose    String
   diet               String
-  weightMrs          Float
+  weightMrs          String
   armCircumference   Float
   estimatedWeight    Float
   actualWeight       Float

@@ -20,7 +20,7 @@ export async function seed(prismaClient: PrismaClient) {
       dob: faker.date.past().toISOString(),
       medicalDiagnose: faker.word.noun(),
       diet: faker.word.noun(),
-      weightMrs: faker.datatype.number({ min: 40, max: 80 }),
+      weightMrs: faker.random.numeric(5),
       armCircumference: faker.datatype.number({ min: 40, max: 80 }),
       estimatedWeight: faker.datatype.number({ min: 40, max: 80 }),
       actualWeight: faker.datatype.number({ min: 1, max: 70 }),

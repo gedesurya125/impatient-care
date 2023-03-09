@@ -10,7 +10,7 @@ export type PatientType = {
   dob: string;
   medicalDiagnose: string;
   diet: string;
-  weightMrs: number;
+  weightMrs: string;
   armCircumference: number;
   estimatedWeight: number;
   actualWeight: number;

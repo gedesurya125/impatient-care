@@ -86,4 +86,19 @@ export const resolvers = {
     patients: async (parent: any, args: any, contextValue: any, info: any) =>
       await contextValue.prismaClient.patient.findMany(),
   },
+  Mutation: {
+    createPatient: async (
+      parent: any,
+      { input },
+      contextValue: any,
+      info: any
+    ) => {
+      console.log('hi i am called mutation create patient');
+      const patient = await contextValue.prismaClient.patient.create({
+        data: input,
+      });
+      console.log('this is patient newly created patient', patient);
+      return patient;
+    },
+  },
 };
