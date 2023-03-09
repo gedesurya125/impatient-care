@@ -27,6 +27,17 @@ const theme: Theme = {
       variant: 'forms.input',
     },
   },
+  buttons: {
+    primary: {
+      fontFamily: 'body.bold',
+      fontSize: '1.5rem',
+      lineHeight: 1,
+      width: 'min-content',
+      whiteSpace: 'nowrap',
+      p: '1rem 2rem',
+    },
+  },
+
   colors: {
     ...colors,
   },

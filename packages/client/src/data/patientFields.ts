@@ -143,7 +143,7 @@ export const patientFields: FormFieldProps[] = [
   {
     label: 'IMT/ % Water Low',
     key: 'imtOrWaterLow',
-    type: 'number',
+    type: 'select',
     options: [
       {
         label: 'IMT',

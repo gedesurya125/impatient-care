@@ -4,10 +4,11 @@ import { Heading, Box, Field, Select } from '@gedesurya125/surya-ui';
 import { Formik, Form } from 'formik';
 
 // Local Components
-import { FormField } from 'components/formFields/';
+import { FormField, SubmitButton } from 'components/formFields/';
 
 // data
 import { patientFields } from 'data';
+import { createEmptyFormInitialValue } from 'utils';
 
 // Type
 
@@ -41,19 +42,14 @@ const Headline = () => (
 const AddPatientForm = () => {
   return (
     <Formik
-      initialValues={{
-        name: '',
-        medicalDiagnose: '',
-        diet: '',
-        isSamplingComstock: false,
-      }}
+      enableReinitialize
+      initialValues={createEmptyFormInitialValue(patientFields)}
       onSubmit={(values) => {
-        console.log('this is the values', values);
+        console.log('this is the values TO BE SEND', values);
       }}
     >
       {(props) => {
-        console.log('this is the formik values', props.values);
-
+        console.log('this is the current values', props.values);
         return (
           <Form>
             {patientFields.map(({ key, label, options, type }) => {
@@ -70,6 +66,7 @@ const AddPatientForm = () => {
                 />
               );
             })}
+            <SubmitButton />
           </Form>
         );
       }}
