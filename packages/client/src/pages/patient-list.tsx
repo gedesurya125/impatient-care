@@ -10,6 +10,7 @@ import { PatientType } from '../../../server/types/patientTypes';
 
 // Data
 import { usePatients } from 'apollo/query';
+import { patientFields } from 'data';
 
 export default function PatientList() {
   return (
@@ -66,31 +67,10 @@ const PatientListTable = () => {
 };
 
 const TableHead = () => {
-  const columnTitles = [
-    { label: 'No' },
-    { label: 'Kode AG' },
-    { label: 'Sampling Comstok' },
-    { label: 'Ruang Perawatan' },
-    { label: 'Tanggla Pengkajian' },
-    { label: 'Nomor Kamar / BED' },
-    { label: 'Tanggal MRS' },
-    { label: 'No RM' },
-    { label: 'Nama Pasien' },
-    { label: 'Tanggal Lahir Pasien' },
-    { label: 'Diagonis Medis' },
-    { label: 'Diet' },
-    { label: 'BB saat MRS' },
-    { label: 'Lingkar Lengan (cm)' },
-    { label: 'BB Estimasi' },
-    { label: 'Berat Badan Aktual (kg)' },
-    { label: 'Tinggi Berat Badan Saat MRS(cm)' },
-    { label: 'IMT/ % Water Low' },
-    { label: 'IMT' },
-  ];
   return (
     <Box as="thead">
       <Box as="tr">
-        {columnTitles.map(({ label }) => {
+        {patientFields.map(({ label }) => {
           return (
             <TableRowItem
               key={label}

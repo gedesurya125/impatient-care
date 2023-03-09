@@ -10,6 +10,20 @@ const theme: Theme = {
       bold: 'Quicksand-SemiBold, sans-serif',
     },
   },
+  text: {},
+  forms: {
+    label: {
+      fontFamily: 'body.medium',
+      fontSize: ['1rem', '1.2rem'],
+      lineHeight: 1,
+    },
+    input: {
+      fontFamily: 'body.normal',
+      fontSize: ['1rem', '1.3rem'],
+      lineHeight: 1.4,
+      px: ['0.6rem', '0.6rem'],
+    },
+  },
   colors: {
     ...colors,
   },

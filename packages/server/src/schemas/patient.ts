@@ -1,4 +1,3 @@
-
 export const typeDef = `#graphql
   type Patient {
     id: ID!
@@ -13,7 +12,7 @@ export const typeDef = `#graphql
     dob:String
     medicalDiagnose: String
     diet:String
-    weightMrs:Float
+    weightMrs:Float # todo: alter to String
     armCircumference:Float
     estimatedWeight:Float
     actualWeight:Float
@@ -79,10 +78,9 @@ export const typeDef = `#graphql
   }
 `;
 
-
 export const resolvers = {
   Query: {
-    patients: async (parent: any, args: any, contextValue: any, info: any) => await contextValue.prismaClient.patient.findMany(),
+    patients: async (parent: any, args: any, contextValue: any, info: any) =>
+      await contextValue.prismaClient.patient.findMany(),
   },
 };
-
