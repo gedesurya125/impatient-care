@@ -10,6 +10,9 @@ import { FormField, SubmitButton } from 'components/formFields/';
 import { patientFields } from 'data';
 import { createEmptyFormInitialValue } from 'utils';
 
+// Hooks
+import { useCreatePatient } from 'apollo/query';
+
 // Type
 
 export default function AddPatient() {
@@ -34,16 +37,22 @@ const Headline = () => (
 );
 
 const AddPatientForm = () => {
+  const [createPatient] = useCreatePatient();
+
   return (
     <Formik
       enableReinitialize
       initialValues={createEmptyFormInitialValue(patientFields)}
-      onSubmit={(values) => {
+      onSubmit={async (values) => {
         console.log('this is the values TO BE SEND', values);
+        await createPatient({
+          variables: {
+            input: values,
+          },
+        });
       }}
     >
       {(props) => {
-        console.log('this is the current values', props.values);
         return (
           <Form>
             {patientFields.map(({ key, label, options, type }) => {

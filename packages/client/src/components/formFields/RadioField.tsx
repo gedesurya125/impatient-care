@@ -16,8 +16,6 @@ interface RadioFieldProps {
 export const RadioField = ({ name, label, value }: RadioFieldProps) => {
   const [field, meta, helper] = useField(name);
 
-  console.log('this is the field name', name);
-
   return (
     <Label
       htmlFor={name + value}

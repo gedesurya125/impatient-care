@@ -1,7 +1,6 @@
 import type { FormFieldProps } from 'types';
 
 export const patientFields: FormFieldProps[] = [
-  { label: 'No', key: 'no', type: 'number' },
   {
     label: 'Kode AG',
     key: 'codeAg',
@@ -110,9 +109,9 @@ export const patientFields: FormFieldProps[] = [
     ],
   },
   { label: 'Tanggla Pengkajian', key: 'assessmentDate', type: 'date' },
-  { label: 'Nomor Kamar / BED', key: 'roomNumber', type: 'number' },
+  { label: 'Nomor Kamar / BED', key: 'roomNumber', type: 'text' },
   { label: 'Tanggal MRS', key: 'mrsDate', type: 'date' },
-  { label: 'No RM', key: 'rmNumber', type: 'number' },
+  { label: 'No RM', key: 'rmNumber', type: 'text' },
   { label: 'Nama Pasien', key: 'name', type: 'text' },
   { label: 'Tanggal Lahir Pasien', key: 'dob', type: 'date' },
   { label: 'Diagonis Medis', key: 'medicalDiagnose', type: 'text' },
