@@ -43,11 +43,14 @@ const AddPatientForm = () => {
     <Formik
       enableReinitialize
       initialValues={createEmptyFormInitialValue(patientFields)}
-      onSubmit={async (values) => {
+      onSubmit={async (values, { resetForm }) => {
         console.log('this is the values TO BE SEND', values);
         await createPatient({
           variables: {
             input: values,
+          },
+          onCompleted: () => {
+            resetForm();
           },
         });
       }}
