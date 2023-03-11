@@ -64,6 +64,13 @@ const TableHead = () => {
   return (
     <Box as="thead">
       <Box as="tr">
+        <TableRowItem
+          key="no"
+          text="No"
+          sx={{
+            fontFamily: 'body.bold',
+          }}
+        />
         {patientFields.map(({ label }) => {
           return (
             <TableRowItem

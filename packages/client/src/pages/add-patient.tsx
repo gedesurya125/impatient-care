@@ -5,7 +5,7 @@ import { Formik, Form } from 'formik';
 
 // Local Components
 import { FormField, SubmitButton } from 'components/formFields/';
-
+import { AddPatientForm } from 'forms';
 // data
 import { patientFields } from 'data';
 import { createEmptyFormInitialValue } from 'utils';
@@ -35,47 +35,3 @@ const Headline = () => (
     Welcome to Add Patient
   </Heading>
 );
-
-const AddPatientForm = () => {
-  const [createPatient] = useCreatePatient();
-
-  return (
-    <Formik
-      enableReinitialize
-      initialValues={createEmptyFormInitialValue(patientFields)}
-      onSubmit={async (values, { resetForm }) => {
-        console.log('this is the values TO BE SEND', values);
-        await createPatient({
-          variables: {
-            input: values,
-          },
-          onCompleted: () => {
-            resetForm();
-          },
-        });
-      }}
-    >
-      {(props) => {
-        return (
-          <Form>
-            {patientFields.map(({ key, label, options, type }) => {
-              return (
-                <FormField
-                  key={key}
-                  name={key}
-                  label={label}
-                  options={options}
-                  type={type}
-                  sx={{
-                    mt: '2rem',
-                  }}
-                />
-              );
-            })}
-            <SubmitButton />
-          </Form>
-        );
-      }}
-    </Formik>
-  );
-};

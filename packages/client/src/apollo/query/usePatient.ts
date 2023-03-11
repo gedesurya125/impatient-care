@@ -93,6 +93,7 @@ export const useCreatePatient = () => {
       });
     },
     onError: (error) => {
+      alert(`Error On Create Patient: ${JSON.stringify(error)}`);
       console.log('error crate patient', error);
     },
   });

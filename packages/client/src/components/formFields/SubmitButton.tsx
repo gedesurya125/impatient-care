@@ -1,24 +1,46 @@
 import React from 'react';
 
 // External Components
-import { Button } from '@gedesurya125/surya-ui';
+import { Box, Button } from '@gedesurya125/surya-ui';
 import { ThemeUIStyleObject } from 'theme-ui';
+import { Spinner } from 'assets';
 
 interface SubmitButtonProps {
+  loading?: boolean;
   sx?: ThemeUIStyleObject;
 }
 
-export const SubmitButton = ({ sx }: SubmitButtonProps) => {
+export const SubmitButton = ({ sx, loading }: SubmitButtonProps) => {
   return (
     <Button
+      disabled={loading}
       className="__submit-button"
       type="submit"
       sx={{
         mt: 'small',
+        position: 'relative',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
         ...sx,
       }}
     >
-      Submit
+      <Box
+        as="span"
+        sx={{
+          opacity: loading ? 0 : 1,
+        }}
+      >
+        Submit
+      </Box>
+      {loading && (
+        <Spinner
+          sx={{
+            width: '2rem',
+            position: 'absolute',
+          }}
+        />
+      )}
     </Button>
   );
 };
