@@ -3,7 +3,7 @@ import { faker } from '@faker-js/faker';
 
 import type { PatientType } from '../../types/patientTypes';
 
-const PATIENTS_NUMBER = 10;
+const PATIENTS_NUMBER = 100;
 
 export async function seed(prismaClient: PrismaClient) {
   const patientsData: PatientType[] = [];

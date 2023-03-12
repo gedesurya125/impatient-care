@@ -174,6 +174,9 @@ const TableRowItem = ({
         border: '1px solid',
         borderColor: 'primary',
         p: [null, '0.3rem 0.4rem'],
+        fontFamily: 'body.normal',
+        lineHeight: 1.3,
+        fontSize: ['1.2rem', '1.3rem'],
         ...sx,
       }}
       {...props}

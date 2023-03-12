@@ -19,7 +19,7 @@ const theme: Theme = {
     },
     input: {
       fontFamily: 'body.normal',
-      fontSize: ['1.8rem', '1.8rem'],
+      fontSize: ['1.5rem', '1.5rem'],
       lineHeight: 1.4,
       px: ['0.6rem', '0.6rem'],
     },
