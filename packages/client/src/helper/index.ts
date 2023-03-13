@@ -1,3 +1,3 @@
-export * from "./animation";
-export * from "./style";
-export * from './getHostUrl'
+export * from './style';
+export * from './getHostUrl';
+export * from './getDate';

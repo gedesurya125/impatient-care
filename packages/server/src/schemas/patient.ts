@@ -1,6 +1,7 @@
 export const typeDef = `#graphql
   type Patient {
     id: ID!
+    createdAt: String
     codeAg:String
     isSamplingComstock: Boolean
     roomName:String

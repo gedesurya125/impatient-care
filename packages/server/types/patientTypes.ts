@@ -1,4 +1,5 @@
 export type PatientType = {
+  createdAt?: string | Date;
   codeAg: string;
   isSamplingComstock: boolean;
   roomName: string;

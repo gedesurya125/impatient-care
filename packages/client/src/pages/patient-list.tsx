@@ -11,6 +11,8 @@ import { PatientType } from '../../../server/types/patientTypes';
 // Data
 import { usePatients } from 'apollo/query';
 import { patientFields } from 'data';
+import { Spinner } from 'assets';
+import { getDate } from 'helper';
 
 export default function PatientList() {
   return (
@@ -25,6 +27,7 @@ export default function PatientList() {
           minHeight: '70vh',
           borderRadius: 'medium',
           p: 'xSmall',
+          position: 'relative',
         }}
       >
         <PatientListTable />
@@ -46,6 +49,20 @@ const Headline = () => (
 );
 
 const PatientListTable = () => {
+  const { data, loading } = usePatients();
+
+  if (loading || data?.patients?.length === 0)
+    return (
+      <Spinner
+        sx={{
+          color: 'primary',
+          width: '2rem',
+          position: 'absolute',
+          top: 'calc(50% - 1rem)',
+          left: 'calc(50% - 1rem)',
+        }}
+      />
+    );
   return (
     <Box
       as="table"
@@ -55,7 +72,7 @@ const PatientListTable = () => {
       }}
     >
       <TableHead />
-      <TableBody />
+      <TableBody data={data} />
     </Box>
   );
 };
@@ -87,15 +104,14 @@ const TableHead = () => {
   );
 };
 
-const TableBody = () => {
-  const { data, loading } = usePatients();
-  console.log(data);
+const TableBody = ({ data }: { data: any }) => {
+  // const { data, loading } = usePatients();
 
-  if (loading || data?.patients?.length === 0) return null;
+  // if (loading || data?.patients?.length === 0) return null;
 
   return (
     <Box as="tbody">
-      {data.patients.map((data: PatientType, index: number) => {
+      {data?.patients.map((data: PatientType, index: number) => {
         return (
           <TableBodyRow key={index} number={index + 1} patientData={data} />
         );
@@ -106,6 +122,7 @@ const TableBody = () => {
 
 const TableBodyRow = ({
   patientData: {
+    createdAt,
     codeAg,
     isSamplingComstock,
     roomName,
@@ -131,20 +148,24 @@ const TableBodyRow = ({
   patientData: PatientType;
   number: number;
 }) => {
-  console.log('this is waterlow', waterLow);
-
   return (
     <Box as="tr">
       <TableRowItem text={number} />
+      <TableRowItem
+        text={
+          // createdAt ? new Date(Number(createdAt)).toString().slice(0, 24) : ''
+          createdAt ? getDate(createdAt) : ''
+        }
+      />
       <TableRowItem text={codeAg} />
       <TableRowItem text={isSamplingComstock.toString()} />
       <TableRowItem text={roomName} />
-      <TableRowItem text={assessmentDate} />
+      <TableRowItem text={getDate(assessmentDate)} />
       <TableRowItem text={roomNumber} />
-      <TableRowItem text={mrsDate} />
+      <TableRowItem text={getDate(mrsDate)} />
       <TableRowItem text={rmNumber} />
       <TableRowItem text={name} />
-      <TableRowItem text={dob} />
+      <TableRowItem text={getDate(dob)} />
       <TableRowItem text={medicalDiagnose} />
       <TableRowItem text={diet} />
       <TableRowItem text={weightMrs} />

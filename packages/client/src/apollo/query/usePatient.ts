@@ -5,6 +5,7 @@ const PATIENTS = gql`
   query Patients {
     patients {
       id
+      createdAt
       codeAg
       isSamplingComstock
       roomName
