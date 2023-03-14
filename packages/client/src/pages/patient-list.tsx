@@ -105,10 +105,6 @@ const TableHead = () => {
 };
 
 const TableBody = ({ data }: { data: any }) => {
-  // const { data, loading } = usePatients();
-
-  // if (loading || data?.patients?.length === 0) return null;
-
   return (
     <Box as="tbody">
       {data?.patients.map((data: PatientType, index: number) => {
