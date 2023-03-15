@@ -91,7 +91,13 @@ export const typeDef = `#graphql
 export const resolvers = {
   Query: {
     patients: async (parent: any, args: any, contextValue: any, info: any) =>
-      await contextValue.prismaClient.patient.findMany(),
+      await contextValue.prismaClient.patient.findMany({
+        orderBy: [
+          {
+            createdAt: 'desc',
+          },
+        ],
+      }),
   },
   Mutation: {
     createPatient: async (
