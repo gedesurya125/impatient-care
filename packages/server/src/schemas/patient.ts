@@ -106,8 +106,6 @@ export const resolvers = {
       const take = args?.input?.take;
       const order = args?.input?.order;
 
-      console.log('this is the take', take, order, cursor, args);
-
       const cursorProps = !!cursor
         ? {
             cursor: {
@@ -135,7 +133,6 @@ export const resolvers = {
       contextValue: any,
       info: any
     ) => {
-      console.log('hi i am called mutation create patient');
       const patient = await contextValue.prismaClient.patient.create({
         data: input,
       });
