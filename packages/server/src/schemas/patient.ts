@@ -23,8 +23,19 @@ export const typeDef = `#graphql
     waterLow:Float
   }
 
+  enum OrderType {
+    ASC
+    DESC
+  }
+
+  input fetchPatients {
+    take: Int
+    cursor: ID
+    order: OrderType
+  }
+
   extend type Query {
-    patients: [Patient]
+    patients(input: fetchPatients): [Patient]
   }
 
   input CreatePatient {
@@ -90,14 +101,32 @@ export const typeDef = `#graphql
 
 export const resolvers = {
   Query: {
-    patients: async (parent: any, args: any, contextValue: any, info: any) =>
-      await contextValue.prismaClient.patient.findMany({
+    patients: async (parent: any, args: any, contextValue: any, info: any) => {
+      const cursor = args?.input?.cursor;
+      const take = args?.input?.take;
+      const order = args?.input?.order;
+
+      console.log('this is the take', take, order, cursor, args);
+
+      const cursorProps = !!cursor
+        ? {
+            cursor: {
+              id: cursor,
+            },
+          }
+        : undefined;
+
+      return await contextValue.prismaClient.patient.findMany({
+        take: !!take ? take : 10,
+        skip: !!cursor ? 1 : 0,
+        ...cursorProps,
         orderBy: [
           {
-            createdAt: 'desc',
+            createdAt: order === 'ASC' ? 'asc' : 'desc',
           },
         ],
-      }),
+      });
+    },
   },
   Mutation: {
     createPatient: async (
