@@ -7,7 +7,7 @@ export const getDate = (rawDate: string | number | Date) => {
 };
 
 const getLocalDateAndTime = (date: Date) => {
-  return date.toString().slice(0, 24);
+  return `${date.toString().slice(0, 24)}:${date.getMilliseconds()}`;
 };
 
 const checkIfValidDate = (date: any) => {
