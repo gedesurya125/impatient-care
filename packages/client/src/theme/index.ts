@@ -1,6 +1,7 @@
 import type { Theme } from 'theme-ui';
 
 import { colors } from './colors';
+import { buttons } from './buttons';
 
 const theme: Theme = {
   fonts: {
@@ -27,17 +28,7 @@ const theme: Theme = {
       variant: 'forms.input',
     },
   },
-  buttons: {
-    primary: {
-      fontFamily: 'body.bold',
-      fontSize: '2rem',
-      lineHeight: 1,
-      width: 'min-content',
-      whiteSpace: 'nowrap',
-      p: '1rem 2rem',
-    },
-  },
-
+  buttons,
   colors: {
     ...colors,
   },

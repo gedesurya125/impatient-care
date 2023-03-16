@@ -1,7 +1,13 @@
 import React from 'react';
 
 // External Components
-import { GridTemplate, Heading, Box } from '@gedesurya125/surya-ui';
+import {
+  GridTemplate,
+  Heading,
+  Box,
+  Button,
+  Paragraph,
+} from '@gedesurya125/surya-ui';
 import { ThemeUIStyleObject } from 'theme-ui';
 
 import { PatientType } from '../../../server/types/patientTypes';
@@ -24,7 +30,7 @@ export default function PatientList() {
           overflow: 'auto',
           border: '2px solid',
           borderColor: 'primary',
-          minHeight: '70vh',
+          height: '70vh',
           borderRadius: 'medium',
           p: 'xSmall',
           position: 'relative',
@@ -49,7 +55,22 @@ const Headline = () => (
 );
 
 const PatientListTable = () => {
-  const { data, loading } = usePatients();
+  const { data, loading, fetchMore } = usePatients();
+  const [disableLoadMore, setDisableLoadMore] = React.useState(false);
+
+  const handleLoadMore = async () => {
+    const result = await fetchMore({
+      variables: {
+        input: {
+          take: 10,
+          cursor: data?.patients[data.patients.length - 1].createdAt,
+        },
+      },
+    });
+
+    if (result.data.patients.length === 0) setDisableLoadMore(true);
+    console.log('this is the result', result);
+  };
 
   if (loading || data?.patients?.length === 0)
     return (
@@ -64,16 +85,41 @@ const PatientListTable = () => {
       />
     );
   return (
-    <Box
-      as="table"
-      sx={{
-        width: 'max-content',
-        borderCollapse: 'collapse',
-      }}
-    >
-      <TableHead />
-      <TableBody data={data} />
-    </Box>
+    <>
+      <Box
+        as="table"
+        sx={{
+          width: 'max-content',
+          borderCollapse: 'collapse',
+        }}
+      >
+        <TableHead />
+        <TableBody data={data} />
+      </Box>
+      {disableLoadMore ? (
+        <Paragraph
+          sx={{
+            mt: '2rem',
+            fontFamily: 'body.bold',
+            lineHeight: 1.5,
+            fontSize: '2rem',
+          }}
+        >
+          End of data is reached
+        </Paragraph>
+      ) : (
+        <Button
+          disabled={disableLoadMore}
+          variant="secondary"
+          onClick={handleLoadMore}
+          sx={{
+            mt: '2rem',
+          }}
+        >
+          Load More
+        </Button>
+      )}
+    </>
   );
 };
 

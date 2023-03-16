@@ -2,8 +2,8 @@ import { useQuery, gql, useMutation } from '@apollo/client';
 import { PatientType } from '../../../../server/types/patientTypes';
 
 const PATIENTS = gql`
-  query Patients {
-    patients {
+  query Patients($input: fetchPatients) {
+    patients(input: $input) {
       id
       createdAt
       codeAg
