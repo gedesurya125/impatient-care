@@ -12,7 +12,7 @@ datasource db {
 
 model Patient {
   id                 String   @id @default(auto()) @map("_id") @db.ObjectId
-  createdAt          DateTime @default(now())
+  createdAt          DateTime @unique @default(now())
   codeAg             String
   isSamplingComstock Boolean
   roomName           String

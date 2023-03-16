@@ -3,7 +3,7 @@ import { faker } from '@faker-js/faker';
 
 import type { PatientType } from '../../types/patientTypes';
 
-const PATIENTS_NUMBER = 100;
+const PATIENTS_NUMBER = 50;
 
 export async function seed(prismaClient: PrismaClient) {
   const patientsData: PatientType[] = [];
@@ -31,7 +31,13 @@ export async function seed(prismaClient: PrismaClient) {
     });
   }
 
-  await prismaClient.patient.createMany({
-    data: patientsData,
-  });
+  // await prismaClient.patient.createMany({
+  //   data: patientsData,
+  // });
+  for (let i = 0; i < patientsData.length; i++) {
+    await prismaClient.patient.create({
+      data: patientsData[i],
+    });
+    console.log('patient crated', patientsData[i].name);
+  }
 }

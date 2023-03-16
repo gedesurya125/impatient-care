@@ -30,7 +30,7 @@ export const typeDef = `#graphql
 
   input fetchPatients {
     take: Int
-    cursor: ID
+    cursor: String
     order: OrderType
   }
 
@@ -106,10 +106,12 @@ export const resolvers = {
       const take = args?.input?.take;
       const order = args?.input?.order;
 
+      console.log('patients fetch args', args);
+
       const cursorProps = !!cursor
         ? {
             cursor: {
-              id: cursor,
+              createdAt: new Date(Number(cursor)),
             },
           }
         : undefined;
