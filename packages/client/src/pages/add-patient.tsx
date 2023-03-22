@@ -8,7 +8,6 @@ import { FormField, SubmitButton } from 'components/formFields/';
 import { AddPatientForm } from 'forms';
 // data
 import { patientFields } from 'data';
-import { createEmptyFormInitialValue } from 'utils';
 
 // Hooks
 import { useCreatePatient } from 'apollo/query';

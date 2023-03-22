@@ -8,31 +8,39 @@ import { FormField, SubmitButton } from 'components/formFields/';
 
 // data
 import { patientFields } from 'data';
-import { createEmptyFormInitialValue } from 'utils';
+import { createFormInitialValue } from 'utils';
 
 // Hooks
 import { useCreatePatient } from 'apollo/query';
+import { PatientType } from '../../../../server/types/patientTypes';
 
 // Type
 
-export const AddPatientForm = () => {
+export const AddPatientForm = ({
+  patientData,
+}: {
+  patientData?: PatientType;
+}) => {
   const [createPatient, { loading }] = useCreatePatient();
 
+  const isEdit = !!patientData;
   return (
     <Formik
       enableReinitialize
-      initialValues={createEmptyFormInitialValue(patientFields)}
+      initialValues={createFormInitialValue(patientFields, patientData)}
       onSubmit={async (values, { resetForm }) => {
         console.log('this is the values TO BE SEND', values);
-        await createPatient({
-          variables: {
-            input: values,
-          },
-          onCompleted: () => {
-            alert('Create Patient Success');
-            resetForm();
-          },
-        });
+        if (!isEdit) {
+          await createPatient({
+            variables: {
+              input: values,
+            },
+            onCompleted: () => {
+              alert('Create Patient Success');
+              resetForm();
+            },
+          });
+        }
       }}
     >
       {(props) => {
@@ -52,7 +60,12 @@ export const AddPatientForm = () => {
                 />
               );
             })}
-            <SubmitButton loading={loading} />
+            <SubmitButton
+              loading={loading}
+              sx={{
+                ml: 'auto',
+              }}
+            />
           </Form>
         );
       }}

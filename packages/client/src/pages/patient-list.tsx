@@ -19,6 +19,7 @@ import { usePatients } from 'apollo/query';
 import { patientFields } from 'data';
 import { Spinner } from 'assets';
 import { getDate } from 'helper';
+import { PatientDetailOverlay } from 'components';
 
 export default function PatientList() {
   return (
@@ -69,7 +70,6 @@ const PatientListTable = () => {
     });
 
     if (result.data.patients.length === 0) setDisableLoadMore(true);
-    console.log('this is the result', result);
   };
 
   if (loading || data?.patients?.length === 0)
@@ -151,13 +151,28 @@ const TableHead = () => {
 };
 
 const TableBody = ({ data }: { data: any }) => {
+  const [dataToDisplay, setDataToDisplay] = React.useState<PatientType | null>(
+    null
+  );
+
   return (
     <Box as="tbody">
       {data?.patients.map((data: PatientType, index: number) => {
         return (
-          <TableBodyRow key={index} number={index + 1} patientData={data} />
+          <TableBodyRow
+            key={index}
+            number={index + 1}
+            patientData={data}
+            onClick={() => setDataToDisplay(data)}
+          />
         );
       })}
+      {!!dataToDisplay && (
+        <PatientDetailOverlay
+          handleClose={() => setDataToDisplay(null)}
+          patientData={dataToDisplay}
+        />
+      )}
     </Box>
   );
 };
@@ -186,12 +201,24 @@ const TableBodyRow = ({
     waterLow,
   },
   number,
+  onClick,
 }: {
   patientData: PatientType;
   number: number;
+  onClick?: () => any;
 }) => {
   return (
-    <Box as="tr">
+    <Box
+      as="tr"
+      className="table-body-row"
+      onClick={onClick}
+      sx={{
+        cursor: 'pointer',
+        ':hover': {
+          bg: 'Highlight',
+        },
+      }}
+    >
       <TableRowItem text={number} />
       <TableRowItem
         text={

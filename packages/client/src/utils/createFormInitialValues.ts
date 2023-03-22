@@ -1,19 +1,24 @@
 import { FormFieldProps, FormFieldTypes, OptionType } from 'types';
 
-interface FormInitialValue {
+interface FormValue {
   [key: string]: any;
 }
 
-export const createEmptyFormInitialValue = (formFields: FormFieldProps[]) => {
-  return formFields.reduce<FormInitialValue>((acc, cur): FormInitialValue => {
+export const createFormInitialValue = (
+  formFields: FormFieldProps[],
+  data?: FormValue
+) => {
+  return formFields.reduce<FormValue>((acc, cur): FormValue => {
     return {
       ...acc,
-      [cur.key]: getInitialValueByFieldType(cur.type, cur?.options),
+      [cur.key]: !!data
+        ? data[cur.key]
+        : getEmptyValueByFieldType(cur.type, cur?.options),
     };
   }, {});
 };
 
-const getInitialValueByFieldType = (
+const getEmptyValueByFieldType = (
   fieldType: FormFieldTypes,
   options?: OptionType[]
 ) => {
