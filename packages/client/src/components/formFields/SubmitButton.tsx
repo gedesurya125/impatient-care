@@ -7,13 +7,14 @@ import { Spinner } from 'assets';
 
 interface SubmitButtonProps {
   loading?: boolean;
+  disabled?: boolean;
   sx?: ThemeUIStyleObject;
 }
 
-export const SubmitButton = ({ sx, loading }: SubmitButtonProps) => {
+export const SubmitButton = ({ sx, loading, disabled }: SubmitButtonProps) => {
   return (
     <Button
-      disabled={loading}
+      disabled={disabled || loading}
       className="__submit-button"
       type="submit"
       sx={{

@@ -1,6 +1,6 @@
 import { FormFieldProps, FormFieldTypes, OptionType } from 'types';
 
-interface FormValue {
+export interface FormValue {
   [key: string]: any;
 }
 

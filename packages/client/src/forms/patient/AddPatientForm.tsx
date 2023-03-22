@@ -13,6 +13,7 @@ import { createFormInitialValue } from 'utils';
 // Hooks
 import { useCreatePatient } from 'apollo/query';
 import { PatientType } from '../../../../server/types/patientTypes';
+import { prepareValueForPatientApi } from './prepareValueForPatientApi';
 
 // Type
 
@@ -24,16 +25,17 @@ export const AddPatientForm = ({
   const [createPatient, { loading }] = useCreatePatient();
 
   const isEdit = !!patientData;
+  // TODO: ADD VALIDATION SCHEMA
   return (
     <Formik
       enableReinitialize
       initialValues={createFormInitialValue(patientFields, patientData)}
       onSubmit={async (values, { resetForm }) => {
-        console.log('this is the values TO BE SEND', values);
+        const preparedValue = prepareValueForPatientApi(values);
         if (!isEdit) {
           await createPatient({
             variables: {
-              input: values,
+              input: preparedValue,
             },
             onCompleted: () => {
               alert('Create Patient Success');
@@ -43,7 +45,7 @@ export const AddPatientForm = ({
         }
       }}
     >
-      {(props) => {
+      {({ dirty }) => {
         return (
           <Form>
             {patientFields.map(({ key, label, options, type }) => {
@@ -62,6 +64,7 @@ export const AddPatientForm = ({
             })}
             <SubmitButton
               loading={loading}
+              disabled={!dirty}
               sx={{
                 ml: 'auto',
               }}

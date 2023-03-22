@@ -34,6 +34,7 @@ export const PatientDetailOverlay = ({
 
 // Markup
 const Content = ({ handleClose, patientData }: PatientDetailOverlayProps) => {
+  // TODO: ADD CANCLE BUTTON
   return (
     <Box
       className="__content"

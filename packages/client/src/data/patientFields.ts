@@ -1,7 +1,7 @@
 import type { FormFieldProps } from 'types';
 
 export const patientFields: FormFieldProps[] = [
-  { label: 'Created At', key: 'cratedAt', type: 'date' },
+  { label: 'Created At', key: 'createdAt', type: 'date' },
   {
     label: 'Kode AG',
     key: 'codeAg',
