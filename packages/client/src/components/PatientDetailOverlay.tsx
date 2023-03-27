@@ -1,7 +1,13 @@
 import React from 'react';
 
 // ExternalComponents
-import { Overlay, Heading, Paragraph, Box } from '@gedesurya125/surya-ui';
+import {
+  Overlay,
+  Heading,
+  Paragraph,
+  Box,
+  Button,
+} from '@gedesurya125/surya-ui';
 import { PatientType } from '../../../server/types/patientTypes';
 
 import { patientFields } from 'data';
@@ -52,9 +58,11 @@ const Content = ({ handleClose, patientData }: PatientDetailOverlayProps) => {
           p: '1rem 2rem 2rem',
           display: 'grid',
           gridTemplateColumns: '2fr 1fr',
+          columnGap: [null, '3rem'],
         }}
       >
         <AddPatientForm patientData={patientData} />
+        <OverlayAside />
       </Box>
     </Box>
   );
@@ -67,6 +75,7 @@ const Header = () => {
       sx={{
         textAlign: 'center',
         py: '1rem',
+        fontFamily: 'body.bold',
       }}
     >
       Patient Detail
@@ -83,5 +92,14 @@ const Divider = () => {
         borderWidth: '1px 0 0 0',
       }}
     />
+  );
+};
+
+const OverlayAside = () => {
+  return (
+    <Box>
+      <Button variant="secondary">Edit</Button>
+      <Button variant="secondary">Delete</Button>
+    </Box>
   );
 };
