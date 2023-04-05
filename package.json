@@ -9,6 +9,8 @@
     "client": "yarn workspace client",
     "server": "yarn workspace server",
     "client:dev": "yarn workspace client dev",
+    "client:start": "yarn workspace client build && yarn workspace client start",
+    "server:dev": "yarn workspace server dev",
     "server:start": "yarn workspace server start",
     "prisma:seed": "yarn workspace server prisma db seed",
     "prisma:reset": "yarn workspace server db:drop",
