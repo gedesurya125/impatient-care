@@ -16,6 +16,8 @@ interface RadioFieldProps {
 export const RadioField = ({ name, label, value }: RadioFieldProps) => {
   const [field, meta, helper] = useField(name);
 
+  console.log('this is the name', name, field.value);
+
   return (
     <Label
       htmlFor={name + value}
@@ -26,7 +28,16 @@ export const RadioField = ({ name, label, value }: RadioFieldProps) => {
         width: 'max-content',
       }}
     >
-      <Radio id={name + value} {...field} value={value} />
+      <Radio
+        id={name + value}
+        {...field}
+        checked={field.value === value}
+        value={value}
+        onChange={() => {
+          helper.setValue(value);
+          helper.setTouched(true);
+        }}
+      />
       <Box
         as="span"
         sx={{
@@ -58,9 +69,14 @@ export const RadioGroup = ({ name, options, label, sx }: RadioGroup) => {
         }}
         className="radio-input-group"
       >
-        {options?.map(({ label, value }) => {
+        {options?.map(({ label: radioLabel, value }, index) => {
           return (
-            <RadioField key={label} name={name} label={label} value={value} />
+            <RadioField
+              key={index}
+              name={name}
+              label={radioLabel}
+              value={value}
+            />
           );
         })}
       </Box>
