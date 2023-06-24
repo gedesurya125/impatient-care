@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 
 // External Components
 import {
@@ -8,7 +8,7 @@ import {
   Button,
   Paragraph,
 } from '@gedesurya125/surya-ui';
-import { ThemeUIStyleObject } from 'theme-ui';
+import { ThemeUIStyleObject, ButtonProps } from 'theme-ui';
 
 import { PatientType } from '../../../server/types/patientTypes';
 
@@ -19,7 +19,13 @@ import { usePatients } from 'apollo/query';
 import { patientFields } from 'data';
 import { Spinner } from 'assets';
 import { getDate } from 'helper';
-import { PatientDetailOverlay } from 'components';
+import {
+  ActionButton,
+  DeleteButton,
+  EditButton,
+  PatientDetailOverlay,
+} from 'components';
+import { PenToSquare, TrashCan } from 'components/icon';
 
 export default function PatientList() {
   return (
@@ -28,7 +34,7 @@ export default function PatientList() {
       <Box
         sx={{
           width: '100%',
-          overflow: 'auto',
+          overflow: 'scroll',
           border: '2px solid',
           borderColor: 'primary',
           height: '70vh',
@@ -89,8 +95,8 @@ const PatientListTable = () => {
       <Box
         as="table"
         sx={{
-          width: 'max-content',
           borderCollapse: 'collapse',
+          minWidth: ['max-content', '100%'],
         }}
       >
         <TableHead />
@@ -124,17 +130,19 @@ const PatientListTable = () => {
 };
 
 const TableHead = () => {
+  const tableHeadContent = [
+    'No.',
+    'Room Name',
+    'Room Number',
+    'RM Number',
+    'Patient Name',
+    'Medical Diagnose',
+    'Actions',
+  ];
   return (
     <Box as="thead">
       <Box as="tr">
-        <TableRowItem
-          key="no"
-          text="No"
-          sx={{
-            fontFamily: 'body.bold',
-          }}
-        />
-        {patientFields.map(({ label }) => {
+        {tableHeadContent.map((label) => {
           return (
             <TableRowItem
               key={label}
@@ -151,9 +159,11 @@ const TableHead = () => {
 };
 
 const TableBody = ({ data }: { data: any }) => {
-  const [dataToDisplay, setDataToDisplay] = React.useState<PatientType | null>(
-    null
-  );
+  const [showMenu, setShowMenu] = React.useState<ShowMenu>({
+    x: 0,
+    y: 0,
+    patientData: null,
+  });
 
   return (
     <Box as="tbody">
@@ -163,88 +173,116 @@ const TableBody = ({ data }: { data: any }) => {
             key={index}
             number={index + 1}
             patientData={data}
-            onClick={() => setDataToDisplay(data)}
+            onClick={() => {
+              alert('open the patient detail modal');
+            }}
           />
         );
       })}
-      {!!dataToDisplay && (
-        <PatientDetailOverlay
-          handleClose={() => setDataToDisplay(null)}
-          patientData={dataToDisplay}
-        />
-      )}
+      {/* pop up menu */}
+      {typeof showMenu === 'object' && <PopUpMenu showMenu={showMenu} />}
     </Box>
   );
 };
 
+type MousePosition = {
+  x: number;
+  y: number;
+  patientData: PatientType | null;
+};
+
+type ShowMenu = MousePosition | boolean;
+
 const TableBodyRow = ({
-  patientData: {
-    createdAt,
-    codeAg,
-    isSamplingComstock,
-    roomName,
-    assessmentDate,
-    roomNumber,
-    mrsDate,
-    rmNumber,
-    name,
-    dob,
-    medicalDiagnose,
-    diet,
-    weightMrs,
-    armCircumference,
-    estimatedWeight,
-    actualWeight,
-    heightMrs,
-    imtOrWaterLow,
-    imt,
-    waterLow,
-  },
+  patientData: { roomName, roomNumber, rmNumber, name, medicalDiagnose },
   number,
   onClick,
 }: {
   patientData: PatientType;
   number: number;
-  onClick?: () => any;
+  onClick?: () => void;
 }) => {
   return (
     <Box
       as="tr"
       className="table-body-row"
-      onClick={onClick}
       sx={{
-        cursor: 'pointer',
         ':hover': {
-          bg: 'Highlight',
+          bg: 'secondary',
+          cursor: 'pointer',
         },
       }}
     >
-      <TableRowItem text={number} />
-      <TableRowItem
-        text={
-          // createdAt ? new Date(Number(createdAt)).toString().slice(0, 24) : ''
-          createdAt ? getDate(createdAt) : ''
-        }
+      <TableRowItem text={number} onClick={onClick} />
+      <TableRowItem text={roomName} onClick={onClick} />
+      <TableRowItem text={roomNumber} onClick={onClick} />
+      <TableRowItem text={rmNumber} onClick={onClick} />
+      <TableRowItem text={name} onClick={onClick} />
+      <TableRowItem text={medicalDiagnose} onClick={onClick} />
+      <ActionCell />
+    </Box>
+  );
+};
+
+const ActionCell = () => {
+  return (
+    <TableRowItem
+      sx={{
+        textAlign: 'center',
+      }}
+    >
+      <EditButton
+        onClick={() => {
+          alert('edit button');
+        }}
       />
-      <TableRowItem text={codeAg} />
-      <TableRowItem text={isSamplingComstock.toString()} />
-      <TableRowItem text={roomName} />
-      <TableRowItem text={getDate(assessmentDate)} />
-      <TableRowItem text={roomNumber} />
-      <TableRowItem text={getDate(mrsDate)} />
-      <TableRowItem text={rmNumber} />
-      <TableRowItem text={name} />
-      <TableRowItem text={getDate(dob)} />
-      <TableRowItem text={medicalDiagnose} />
-      <TableRowItem text={diet} />
-      <TableRowItem text={weightMrs} />
-      <TableRowItem text={armCircumference} />
-      <TableRowItem text={estimatedWeight} />
-      <TableRowItem text={actualWeight} />
-      <TableRowItem text={heightMrs} />
-      <TableRowItem text={imtOrWaterLow} />
-      <TableRowItem text={imt} />
-      <TableRowItem text={waterLow} />
+      <DeleteButton
+        sx={{
+          ml: ['1rem', '2rem'],
+        }}
+        onClick={() => {
+          alert('delete button');
+        }}
+      />
+    </TableRowItem>
+  );
+};
+
+const PopUpMenu = ({ showMenu }: { showMenu: MousePosition }) => {
+  const [openPatientEditOverlay, setOpenPatientEditOverlay] =
+    React.useState(false);
+
+  const handleOpenEditOverlay = () => {
+    console.log('hi i am clicked');
+
+    setOpenPatientEditOverlay(true);
+  };
+  const handleCloseEditOverlay = () => {
+    setOpenPatientEditOverlay(false);
+  };
+  return (
+    <Box
+      className="pop-up-menu"
+      sx={{
+        position: 'fixed',
+        top: showMenu?.y,
+        left: showMenu?.x,
+        bg: 'white',
+        transform: 'translateY(-100%)',
+        borderRadius: 'medium',
+        p: '1rem',
+        display: 'flex',
+        gap: ['1rem', '1rem'],
+      }}
+    >
+      <DeleteButton />
+      <EditButton onClick={handleOpenEditOverlay} />
+      {openPatientEditOverlay && (
+        <PatientDetailOverlay
+          handleClose={handleCloseEditOverlay}
+          patientData={showMenu?.patientData || undefined}
+        />
+      )}
     </Box>
   );
 };
@@ -252,11 +290,29 @@ const TableBodyRow = ({
 const TableRowItem = ({
   text,
   sx,
+  children,
+  onClick,
   ...props
 }: {
-  text: string | number;
+  text?: string | number;
   sx?: ThemeUIStyleObject;
+  children?: React.ReactNode;
+  onClick?: () => void;
 }) => {
+  const asButtonRoleProps = onClick
+    ? {
+        role: 'button',
+        'aria-pressed': false,
+        tabIndex: 0,
+        onClick,
+        onKeyDown: (e: React.KeyboardEvent<HTMLTableCellElement>) => {
+          if (e.key === ' ') {
+            onClick();
+          }
+        },
+      }
+    : {};
+
   return (
     <Box
       as="td"
@@ -270,8 +326,10 @@ const TableRowItem = ({
         ...sx,
       }}
       {...props}
+      {...asButtonRoleProps}
     >
       {text}
+      {children}
     </Box>
   );
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+// todo: make patient detail overlay to be patient edit overlay that only used for editing patient
 
 // ExternalComponents
 import {
@@ -16,7 +17,7 @@ import { AddPatientForm } from 'forms';
 
 interface PatientDetailOverlayProps {
   handleClose: () => any;
-  patientData: PatientType;
+  patientData?: PatientType;
 }
 
 export const PatientDetailOverlay = ({

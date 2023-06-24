@@ -1,12 +1,16 @@
 import { exportTheme } from './helper';
 
-const defaultButton = {
-  fontFamily: 'body.bold',
-  lineHeight: 1,
+const buttonBase = {
+  cursor: 'pointer',
   width: 'min-content',
   whiteSpace: 'nowrap',
+};
+
+const defaultButton = {
+  ...buttonBase,
+  fontFamily: 'body.bold',
+  lineHeight: 1,
   p: '1rem 2rem',
-  cursor: 'pointer',
   '&:disabled, &[disabled]': {
     bg: 'muted',
   },
@@ -20,6 +24,11 @@ const main = {
   secondary: {
     ...defaultButton,
     fontSize: '1.5rem',
+  },
+  clear: {
+    ...buttonBase,
+    p: 0,
+    bg: 'transparent',
   },
 };
 

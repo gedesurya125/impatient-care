@@ -6,3 +6,6 @@ export * from './RightSideBar';
 export * from './NavigationBar';
 export * from './PageLink';
 export * from './PatientDetailOverlay';
+export * from './ActionButton';
+export * from './DeleteIconButton';
+export * from './EditIconButton';

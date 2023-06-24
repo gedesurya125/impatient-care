@@ -45,7 +45,7 @@ export const AddPatientForm = ({
         }
       }}
     >
-      {({ dirty }) => {
+      {({ dirty, values }) => {
         return (
           <Form>
             {patientFields.map(({ key, label, options, type }) => {
