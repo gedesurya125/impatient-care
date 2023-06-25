@@ -1,12 +1,12 @@
 export const typeDef = `#graphql
   extend type Query {
-    patients(input: fetchPatients): [Patient]
+    patients(input: getPatientsInput): [Patient]
   }
 
   extend type Mutation {
-    createPatient(input:CreatePatient!):CreatePatientResponse!
-    updatePatient(id:ID!, input:UpdatePatient!):CreatePatientResponse!
-    deletePatient(id:ID!):DeletePatientResponse!
+    createPatient(input:CreatePatientInput!):CreatePatientResponse!
+    updatePatient(input:UpdatePatientInput!):CreatePatientResponse!
+    deletePatient(input: DeletePatientInput!):DeletePatientResponse!
   }
   
   type Patient {
@@ -33,19 +33,14 @@ export const typeDef = `#graphql
     waterLow:Float
   }
 
-  enum OrderType {
-    ASC
-    DESC
-  }
-
-  input fetchPatients {
+  input getPatientsInput {
     take: Int
     cursor: String
     order: OrderType
   }
 
 
-  input CreatePatient {
+  input CreatePatientInput {
     codeAg:String
     isSamplingComstock: Boolean
     roomName:String
@@ -67,7 +62,8 @@ export const typeDef = `#graphql
     waterLow:Float
   }
 
-  input UpdatePatient {
+  input UpdatePatientInput {
+    id: ID!
     codeAg:String
     isSamplingComstock: Boolean
     roomName:String
@@ -87,6 +83,11 @@ export const typeDef = `#graphql
     imtOrWaterLow:String
     imt:Float
     waterLow:Float
+  }
+
+
+  input DeletePatientInput {
+    id: ID!
   }
 
   type DeletePatientResponse {

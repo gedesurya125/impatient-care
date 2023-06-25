@@ -2,7 +2,7 @@ import { useQuery, gql, useMutation } from '@apollo/client';
 import { PatientType } from '../../../../server/types/patientTypes';
 
 const PATIENTS = gql`
-  query Patients($input: fetchPatients) {
+  query Patients($input: getPatientsInput) {
     patients(input: $input) {
       id
       createdAt
@@ -30,7 +30,7 @@ const PATIENTS = gql`
 `;
 
 const CREATE_PATIENT = gql`
-  mutation CreatePatient($input: CreatePatient!) {
+  mutation CreatePatient($input: CreatePatientInput!) {
     createPatient(input: $input) {
       success
       message
