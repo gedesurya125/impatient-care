@@ -1,4 +1,14 @@
 export const typeDef = `#graphql
+  extend type Query {
+    patients(input: fetchPatients): [Patient]
+  }
+
+  extend type Mutation {
+    createPatient(input:CreatePatient!):CreatePatientResponse!
+    updatePatient(id:ID!, input:UpdatePatient!):CreatePatientResponse!
+    deletePatient(id:ID!):DeletePatientResponse!
+  }
+  
   type Patient {
     id: ID!
     createdAt: String
@@ -34,9 +44,6 @@ export const typeDef = `#graphql
     order: OrderType
   }
 
-  extend type Query {
-    patients(input: fetchPatients): [Patient]
-  }
 
   input CreatePatient {
     codeAg:String
@@ -92,11 +99,7 @@ export const typeDef = `#graphql
     data: Patient
   }
 
-  extend type Mutation {
-    createPatient(input:CreatePatient!):CreatePatientResponse!
-    updatePatient(id:ID!, input:UpdatePatient!):CreatePatientResponse!
-    deletePatient(id:ID!):DeletePatientResponse!
-  }
+  
 `;
 
 export const resolvers = {

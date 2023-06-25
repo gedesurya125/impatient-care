@@ -25,7 +25,7 @@
   "scripts": {
     "compile": "tsc",
     "start": "npm run compile && node ./dist/src/index.js",
-    "dev": "npm run compile && nodemon ./dist/src/index.js",
+    "dev": "../../node_modules/nodemon/bin/nodemon.js -e ts  --exec \"tsc && node ./dist/src/index.js\"",
     "db:drop": "ts-node-esm prisma/drop.ts"
   },
   "prisma": {
