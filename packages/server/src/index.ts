@@ -14,4 +14,3 @@ const { url } = await startStandaloneServer(apolloServer, {
 });
 
 console.log(`🚀  Server ready at: ${url}`);
-console.log('server is healthy man oke');

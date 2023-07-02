@@ -14,7 +14,6 @@ const getTypeDefs = () => {
 
   // const typeDefsDir = path.resolve(path.join(dirname, 'typeDefs'));
   const typeDefsDir = path.resolve(path.join('src', 'apollo', 'typeDefs'));
-  console.log('this is the dirname and the typedefs dir', dirname, typeDefsDir);
 
   const gqlFiles = readdirSync(typeDefsDir);
   gqlFiles.forEach((file) => {

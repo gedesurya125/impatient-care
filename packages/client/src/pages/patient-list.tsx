@@ -26,6 +26,7 @@ import {
   PatientDetailOverlay,
 } from 'components';
 import { PenToSquare, TrashCan } from 'components/icon';
+import { gql, useApolloClient } from '@apollo/client';
 
 export default function PatientList() {
   return (
@@ -64,6 +65,7 @@ const Headline = () => (
 const PatientListTable = () => {
   const { data, loading, fetchMore } = usePatients();
   const [disableLoadMore, setDisableLoadMore] = React.useState(false);
+  const { cache } = useApolloClient();
 
   const handleLoadMore = async () => {
     const result = await fetchMore({
@@ -76,6 +78,23 @@ const PatientListTable = () => {
     });
 
     if (result.data.patients.length === 0) setDisableLoadMore(true);
+    cache.modify({
+      fields: {
+        patients: (existingPatients = []) => {
+          const resultRefs = result.data.patients.map((patientData: any) => {
+            return cache.writeFragment({
+              data: patientData,
+              fragment: gql`
+                fragment newPatient on Patient {
+                  id
+                }
+              `,
+            });
+          });
+          return [...existingPatients, ...resultRefs];
+        },
+      },
+    });
   };
 
   if (loading || data?.patients?.length === 0)

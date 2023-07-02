@@ -5,14 +5,14 @@ const client = new ApolloClient({
   cache: new InMemoryCache({
     typePolicies: {
       Query: {
-        fields: {
-          patients: {
-            keyArgs: false,
-            merge(existing = [], incoming) {
-              return [...existing, ...incoming];
-            },
-          },
-        },
+        // fields: {
+        //   patients: {
+        //     keyArgs: false,
+        //     merge(existing = [], incoming) {
+        //       return [...existing, ...incoming];
+        //     },
+        //   },
+        // },
       },
     },
   }),

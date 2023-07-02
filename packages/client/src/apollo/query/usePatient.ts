@@ -84,10 +84,12 @@ export const useCreatePatient = () => {
               fragment: gql`
                 fragment newPatient on Patient {
                   id
-                  type
                 }
               `,
             });
+
+            console.log('this is patient new', newPatientRef);
+
             return [...existingPatients, newPatientRef];
           },
         },
