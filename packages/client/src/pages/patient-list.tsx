@@ -16,7 +16,7 @@ import { PatientType } from '../../../server/types/patientTypes';
 
 // Data
 import { usePatients } from 'apollo/query';
-import { patientFields } from 'data';
+import { patientFields, patientKeyLabelPair } from 'data';
 import { Spinner } from 'assets';
 import { getDate } from 'helper';
 import {
@@ -152,11 +152,11 @@ const PatientListTable = () => {
 const TableHead = () => {
   const tableHeadContent = [
     'No.',
-    'Room Name',
-    'Room Number',
-    'RM Number',
-    'Patient Name',
-    'Medical Diagnose',
+    patientKeyLabelPair.roomName,
+    patientKeyLabelPair.roomNumber,
+    patientKeyLabelPair.rmNumber,
+    patientKeyLabelPair.name,
+    patientKeyLabelPair.medicalDiagnose,
     'Actions',
   ];
   return (
