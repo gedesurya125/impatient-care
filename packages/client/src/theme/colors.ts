@@ -1,6 +1,6 @@
 const mainColor = {
   primary: '#151210',
-  secondary: '#6492E2',
+  secondary: 'teal',
   success: '#5EEB5B',
   danger: '#A30015',
   muted: '#666A86',

@@ -12,3 +12,4 @@ export * from './EditIconButton';
 export * from './PatientDetailOverlayCard';
 export * from './PatientEditButton';
 export * from './CloseButton';
+export * from './PatientFormOverlay';

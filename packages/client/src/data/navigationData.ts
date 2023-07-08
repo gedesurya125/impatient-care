@@ -5,19 +5,15 @@ export interface navigationBarLink {
 
 export const navigationBarData: navigationBarLink[] = [
   {
-    label: "Home",
-    to: "/"
+    label: 'Home',
+    to: '/',
   },
   {
-    label: "+ Add Patient",
-    to: "/add-patient/"
+    label: 'patient list',
+    to: '/patient-list/',
   },
   {
-    label: "patient list",
-    to: "/patient-list/"
+    label: 'marked patients',
+    to: '/marked-patients/',
   },
-  {
-    label: "marked patients",
-    to: "/marked-patients/"
-  }
-]
+];

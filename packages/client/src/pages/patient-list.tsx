@@ -29,11 +29,12 @@ import {
 } from 'components';
 import { PenToSquare, TrashCan } from 'components/icon';
 import { gql, useApolloClient } from '@apollo/client';
+import { PatientAddButton } from 'components/PatientAddButton';
 
 export default function PatientList() {
   return (
     <>
-      <Headline />
+      <Header />
       <Box
         sx={{
           width: '100%',
@@ -51,6 +52,19 @@ export default function PatientList() {
     </>
   );
 }
+
+const Header = () => {
+  return (
+    <Box
+      sx={{
+        position: 'relative',
+      }}
+    >
+      <Headline />
+      <PatientAddButton />
+    </Box>
+  );
+};
 
 const Headline = () => (
   <Heading
@@ -243,6 +257,7 @@ const TableBodyRow = ({
         ':hover': {
           bg: 'secondary',
           cursor: 'pointer',
+          color: 'background',
         },
       }}
     >
