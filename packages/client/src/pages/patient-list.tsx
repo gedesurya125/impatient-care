@@ -25,6 +25,7 @@ import {
   EditButton,
   PatientDetailOverlay,
   PatientDetailPopUpCard,
+  PatientEditButton,
 } from 'components';
 import { PenToSquare, TrashCan } from 'components/icon';
 import { gql, useApolloClient } from '@apollo/client';
@@ -185,8 +186,6 @@ const TableBody = ({ data }: { data: any }) => {
     patientData: null,
   });
 
-  console.log('this is the patient data now', showMenu);
-
   const handleCloseOverlay = () => {
     setShowMenu({ patientData: null });
   };
@@ -226,7 +225,7 @@ type MousePosition = {
 type ShowMenu = MousePosition | boolean;
 
 const TableBodyRow = ({
-  patientData: { roomName, roomNumber, rmNumber, name, medicalDiagnose },
+  patientData,
   number,
   onClick,
 }: {
@@ -234,6 +233,8 @@ const TableBodyRow = ({
   number: number;
   onClick?: () => void;
 }) => {
+  const { roomName, roomNumber, rmNumber, name, medicalDiagnose } = patientData;
+
   return (
     <Box
       as="tr"
@@ -251,23 +252,19 @@ const TableBodyRow = ({
       <TableRowItem text={rmNumber} onClick={onClick} />
       <TableRowItem text={name} onClick={onClick} />
       <TableRowItem text={medicalDiagnose} onClick={onClick} />
-      <ActionCell />
+      <ActionCell patientData={patientData} />
     </Box>
   );
 };
 
-const ActionCell = () => {
+const ActionCell = ({ patientData }: { patientData: PatientType }) => {
   return (
     <TableRowItem
       sx={{
         textAlign: 'center',
       }}
     >
-      <EditButton
-        onClick={() => {
-          alert('edit button');
-        }}
-      />
+      <PatientEditButton patientData={patientData} />
       <DeleteButton
         sx={{
           ml: ['1rem', '2rem'],
@@ -277,45 +274,6 @@ const ActionCell = () => {
         }}
       />
     </TableRowItem>
-  );
-};
-
-const PopUpMenu = ({ showMenu }: { showMenu: MousePosition }) => {
-  const [openPatientEditOverlay, setOpenPatientEditOverlay] =
-    React.useState(false);
-
-  const handleOpenEditOverlay = () => {
-    console.log('hi i am clicked');
-
-    setOpenPatientEditOverlay(true);
-  };
-  const handleCloseEditOverlay = () => {
-    setOpenPatientEditOverlay(false);
-  };
-  return (
-    <Box
-      className="pop-up-menu"
-      sx={{
-        position: 'fixed',
-        top: showMenu?.y,
-        left: showMenu?.x,
-        bg: 'white',
-        transform: 'translateY(-100%)',
-        borderRadius: 'medium',
-        p: '1rem',
-        display: 'flex',
-        gap: ['1rem', '1rem'],
-      }}
-    >
-      <DeleteButton />
-      <EditButton onClick={handleOpenEditOverlay} />
-      {openPatientEditOverlay && (
-        <PatientDetailOverlay
-          handleClose={handleCloseEditOverlay}
-          patientData={showMenu?.patientData || undefined}
-        />
-      )}
-    </Box>
   );
 };
 

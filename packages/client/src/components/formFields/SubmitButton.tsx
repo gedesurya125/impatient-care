@@ -23,6 +23,8 @@ export const SubmitButton = ({ sx, loading, disabled }: SubmitButtonProps) => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        p: '1rem 2rem',
+        fontSize: '1.5rem',
         ...sx,
       }}
     >

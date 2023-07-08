@@ -10,3 +10,4 @@ export * from './ActionButton';
 export * from './DeleteIconButton';
 export * from './EditIconButton';
 export * from './PatientDetailOverlayCard';
+export * from './PatientEditButton';
