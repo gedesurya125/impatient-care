@@ -1,6 +1,8 @@
+import { PrismaClient } from '@prisma/client';
+
 export const patientResolvers = {
   Query: {
-    patients: async (parent: any, args: any, contextValue: any, info: any) => {
+    patients: async (parent: any, args: any, context: any, info: any) => {
       const cursor = args?.input?.cursor;
       const take = args?.input?.take;
       const order = args?.input?.order;
@@ -15,7 +17,7 @@ export const patientResolvers = {
           }
         : undefined;
 
-      return await contextValue.prismaClient.patient.findMany({
+      return await context.prismaClient.patient.findMany({
         take: !!take ? take : 10,
         skip: !!cursor ? 1 : 0,
         ...cursorProps,
@@ -28,13 +30,8 @@ export const patientResolvers = {
     },
   },
   Mutation: {
-    createPatient: async (
-      parent: any,
-      { input },
-      contextValue: any,
-      info: any
-    ) => {
-      const patient = await contextValue.prismaClient.patient.create({
+    createPatient: async (parent: any, { input }, context: any, info: any) => {
+      const patient = await context.prismaClient.patient.create({
         data: input,
       });
       if (patient?.id)
@@ -48,6 +45,25 @@ export const patientResolvers = {
         message: 'patient not created',
         data: {},
       };
+    },
+    updatePatient: async (
+      parent: any,
+      { input },
+      { prismaClient }: { prismaClient: PrismaClient },
+      info: any
+    ) => {
+      const { id, ...rest } = input;
+
+      const response = await prismaClient?.patient?.update({
+        where: {
+          id,
+        },
+        data: {
+          ...rest,
+        },
+      });
+
+      return response;
     },
   },
 };
