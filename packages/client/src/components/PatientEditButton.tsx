@@ -13,6 +13,7 @@ import {
 import { patientFields } from 'data';
 import { FormFieldProps } from 'types';
 import { AddPatientForm } from 'forms';
+import { CloseButton } from './CloseButton';
 
 interface PatientEditButtonProps {
   patientData: PatientType;
@@ -51,6 +52,8 @@ export const PatientEditOverlay = ({
   handleClose,
   patientData,
 }: PatientEditOverlayProps) => {
+  console.log('this is the patient dta', patientData);
+
   return (
     <Overlay
       handleCloseOverlay={handleClose}
@@ -58,7 +61,7 @@ export const PatientEditOverlay = ({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'top',
-        py: '2rem',
+        py: '3rem',
       }}
     >
       <Content handleClose={handleClose} patientData={patientData} />
@@ -77,8 +80,10 @@ const Content = ({ handleClose, patientData }: PatientEditOverlayProps) => {
         width: ['90%', '80%', '80%', '80%', '80%'],
         borderRadius: 'medium',
         height: 'min-content',
+        position: 'relative',
       }}
     >
+      <CloseButton onClick={handleClose} />
       <Header />
       <Divider />
       <Box
@@ -94,7 +99,7 @@ const Content = ({ handleClose, patientData }: PatientEditOverlayProps) => {
           },
         }}
       >
-        <AddPatientForm patientData={patientData} />
+        <AddPatientForm patientData={patientData} onComplete={handleClose} />
         {/* <OverlayAside /> */}
       </Box>
     </Box>

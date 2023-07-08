@@ -11,7 +11,7 @@ import { patientFields } from 'data';
 import { createFormInitialValue } from 'utils';
 
 // Hooks
-import { useCreatePatient } from 'apollo/query';
+import { useCreatePatient, useEditPatient } from 'apollo/query';
 import { PatientType } from '../../../../server/types/patientTypes';
 import { prepareValueForPatientApi } from './prepareValueForPatientApi';
 
@@ -19,10 +19,13 @@ import { prepareValueForPatientApi } from './prepareValueForPatientApi';
 
 export const AddPatientForm = ({
   patientData,
+  onComplete,
 }: {
   patientData?: PatientType;
+  onComplete?: () => void;
 }) => {
   const [createPatient, { loading }] = useCreatePatient();
+  const [updatePatient, { loading: editLoading }] = useEditPatient();
 
   const isEdit = !!patientData;
   // TODO: ADD VALIDATION SCHEMA
@@ -38,11 +41,23 @@ export const AddPatientForm = ({
               input: preparedValue,
             },
             onCompleted: () => {
-              alert('Create Patient Success');
               resetForm();
+              onComplete && onComplete();
             },
           });
         }
+        await updatePatient({
+          variables: {
+            input: {
+              id: patientData?.id,
+              ...preparedValue,
+            },
+          },
+          onCompleted: () => {
+            resetForm();
+            onComplete && onComplete();
+          },
+        });
       }}
     >
       {({ dirty, values }) => {
@@ -63,7 +78,7 @@ export const AddPatientForm = ({
               );
             })}
             <SubmitButton
-              loading={loading}
+              loading={loading || editLoading}
               disabled={!dirty}
               sx={{
                 ml: 'auto',

@@ -1,4 +1,5 @@
 export type PatientType = {
+  id?: string;
   createdAt?: string | Date;
   codeAg: string;
   isSamplingComstock: boolean;

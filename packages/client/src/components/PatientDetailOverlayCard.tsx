@@ -4,6 +4,7 @@ import React from 'react';
 import { Overlay, Box, Heading, Paragraph } from '@gedesurya125/surya-ui';
 import { PatientType } from '../../../server/types/patientTypes';
 import { patientKeyLabelPair } from 'data';
+import { CloseButton } from './CloseButton';
 
 interface PatientDetailPopUpCardProps {
   handleClose: () => void;
@@ -23,7 +24,7 @@ export const PatientDetailPopUpCard = ({
         alignItems: 'center',
       }}
     >
-      <Content patientData={patientData} />
+      <Content patientData={patientData} handleClose={handleClose} />
     </Overlay>
   );
 };
@@ -51,8 +52,10 @@ const Content = ({
     waterLow,
     weightMrs,
   },
+  handleClose,
 }: {
   patientData: PatientType;
+  handleClose: () => void;
 }) => {
   return (
     <Box
@@ -64,8 +67,10 @@ const Content = ({
         display: 'grid',
         gridTemplateColumns: 'auto auto 1fr',
         p: 'small',
+        position: 'relative',
       }}
     >
+      <CloseButton onClick={handleClose} />
       <LabelAndValue label={patientKeyLabelPair.name} value={name} />
       <LabelAndValue label={patientKeyLabelPair.roomName} value={roomName} />
       <LabelAndValue

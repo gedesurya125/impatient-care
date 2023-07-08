@@ -1,61 +1,63 @@
 import { useQuery, gql, useMutation } from '@apollo/client';
 import { PatientType } from '../../../../server/types/patientTypes';
 
+const PATIENT_FIELDS = gql`
+  fragment patientFields on Patient {
+    id
+    createdAt
+    codeAg
+    isSamplingComstock
+    roomName
+    assessmentDate
+    roomNumber
+    mrsDate
+    rmNumber
+    name
+    dob
+    medicalDiagnose
+    diet
+    weightMrs
+    armCircumference
+    estimatedWeight
+    actualWeight
+    heightMrs
+    imtOrWaterLow
+    imt
+    waterLow
+  }
+`;
+
 const PATIENTS = gql`
+  ${PATIENT_FIELDS}
   query Patients($input: getPatientsInput) {
     patients(input: $input) {
-      id
-      createdAt
-      codeAg
-      isSamplingComstock
-      roomName
-      assessmentDate
-      roomNumber
-      mrsDate
-      rmNumber
-      name
-      dob
-      medicalDiagnose
-      diet
-      weightMrs
-      armCircumference
-      estimatedWeight
-      actualWeight
-      heightMrs
-      imtOrWaterLow
-      imt
-      waterLow
+      ...patientFields
     }
   }
 `;
 
 const CREATE_PATIENT = gql`
+  ${PATIENT_FIELDS}
   mutation CreatePatient($input: CreatePatientInput!) {
     createPatient(input: $input) {
       success
       message
       data {
-        id
-        codeAg
-        isSamplingComstock
-        roomName
-        assessmentDate
-        roomNumber
-        mrsDate
-        rmNumber
-        name
-        dob
-        medicalDiagnose
-        diet
-        weightMrs
-        armCircumference
-        estimatedWeight
-        actualWeight
-        heightMrs
-        imtOrWaterLow
-        imt
-        waterLow
+        ...patientFields
       }
+    }
+  }
+`;
+
+const EDIT_PATIENT = gql`
+  ${PATIENT_FIELDS}
+  mutation UpdatePatient($input: UpdatePatientInput!) {
+    updatePatient(input: $input) {
+      data {
+        ...patientFields
+      }
+      message
+      success
     }
   }
 `;
@@ -64,21 +66,24 @@ export const usePatients = () => {
   return useQuery(PATIENTS);
 };
 
+export const useEditPatient = () => {
+  return useMutation(EDIT_PATIENT, {
+    update: (cache, data: any) => {
+      console.log('this is the current update cahce and data', cache, data);
+    },
+    onError: (error) => {
+      console.log('Error Edit the patient', error);
+    },
+  });
+};
+
 export const useCreatePatient = () => {
   return useMutation(CREATE_PATIENT, {
     update: (cache, data: any) => {
-      console.log(
-        'this is the current cache and data after create a patient',
-        cache,
-        data
-      );
-
       if (!data?.data?.createPatient?.data) return;
       cache.modify({
         fields: {
           patients: (existingPatients = []) => {
-            console.log('this is existing patients', existingPatients);
-
             const newPatientRef = cache.writeFragment({
               data: data?.data?.createPatient?.data,
               fragment: gql`
@@ -88,9 +93,7 @@ export const useCreatePatient = () => {
               `,
             });
 
-            console.log('this is patient new', newPatientRef);
-
-            return [...existingPatients, newPatientRef];
+            return [newPatientRef, ...existingPatients];
           },
         },
       });

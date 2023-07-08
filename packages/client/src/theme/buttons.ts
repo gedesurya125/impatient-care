@@ -30,6 +30,12 @@ const main = {
     p: 0,
     bg: 'transparent',
   },
+  iconButton: {
+    variant: 'buttons.clear',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 };
 
 export const buttons = exportTheme({
