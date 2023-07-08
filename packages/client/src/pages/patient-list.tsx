@@ -24,6 +24,7 @@ import {
   DeleteButton,
   EditButton,
   PatientDetailOverlay,
+  PatientDetailPopUpCard,
 } from 'components';
 import { PenToSquare, TrashCan } from 'components/icon';
 import { gql, useApolloClient } from '@apollo/client';
@@ -178,29 +179,41 @@ const TableHead = () => {
 };
 
 const TableBody = ({ data }: { data: any }) => {
-  const [showMenu, setShowMenu] = React.useState<ShowMenu>({
-    x: 0,
-    y: 0,
+  const [showMenu, setShowMenu] = React.useState<{
+    patientData: PatientType | null;
+  }>({
     patientData: null,
   });
 
+  console.log('this is the patient data now', showMenu);
+
+  const handleCloseOverlay = () => {
+    setShowMenu({ patientData: null });
+  };
+
   return (
-    <Box as="tbody">
-      {data?.patients.map((data: PatientType, index: number) => {
-        return (
-          <TableBodyRow
-            key={index}
-            number={index + 1}
-            patientData={data}
-            onClick={() => {
-              alert('open the patient detail modal');
-            }}
-          />
-        );
-      })}
-      {/* pop up menu */}
-      {typeof showMenu === 'object' && <PopUpMenu showMenu={showMenu} />}
-    </Box>
+    <>
+      <Box as="tbody">
+        {data?.patients.map((data: PatientType, index: number) => {
+          return (
+            <TableBodyRow
+              key={index}
+              number={index + 1}
+              patientData={data}
+              onClick={() => {
+                setShowMenu({ patientData: data });
+              }}
+            />
+          );
+        })}
+      </Box>
+      {showMenu.patientData !== null && (
+        <PatientDetailPopUpCard
+          handleClose={handleCloseOverlay}
+          patientData={showMenu.patientData}
+        />
+      )}
+    </>
   );
 };
 

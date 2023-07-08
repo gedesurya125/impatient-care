@@ -54,7 +54,7 @@ export const patientResolvers = {
     ) => {
       const { id, ...rest } = input;
 
-      const response = await prismaClient?.patient?.update({
+      const patient = await prismaClient?.patient?.update({
         where: {
           id,
         },
@@ -63,7 +63,11 @@ export const patientResolvers = {
         },
       });
 
-      return response;
+      return {
+        success: true,
+        message: 'patient updated',
+        data: patient,
+      };
     },
   },
 };

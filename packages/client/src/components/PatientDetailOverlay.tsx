@@ -1,6 +1,6 @@
 import React from 'react';
 // todo: make patient detail overlay to be patient edit overlay that only used for editing patient
-
+// TODO: CHANGE THIS COMPONENT NAME TO BE PATIENT EDIT OVERLAY
 // ExternalComponents
 import {
   Overlay,

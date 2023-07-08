@@ -1,5 +1,5 @@
 import type { FormFieldProps } from 'types';
-
+// TODO: change the label of each key with key label pair defined in patientLabel.js
 export const patientFields: FormFieldProps[] = [
   { label: 'Created At', key: 'createdAt', type: 'date' },
   {
