@@ -1,0 +1,9 @@
+type Query {
+  patients(input: getPatientsInput): [Patient]
+}
+
+type Mutation {
+  createPatient(input: CreatePatientInput!): CreatePatientResponse!
+  updatePatient(input: UpdatePatientInput!): CreatePatientResponse!
+  deletePatient(input: DeletePatientInput!): DeletePatientResponse!
+}

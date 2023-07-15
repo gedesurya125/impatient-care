@@ -1,0 +1,33 @@
+type Patient {
+  id: ID!
+  createdAt: String
+  codeAg: String
+  isSamplingComstock: Boolean
+  roomName: String
+  assessmentDate: String
+  roomNumber: String
+  mrsDate: String
+  rmNumber: String
+  name: String
+  dob: String
+  medicalDiagnose: String
+  diet: String
+  weightMrs: String
+  armCircumference: Float
+  estimatedWeight: Float
+  actualWeight: Float
+  heightMrs: Float
+  imtOrWaterLow: String
+  imt: Float
+  waterLow: Float
+}
+
+type DeletePatientResponse {
+  id: ID!
+}
+
+type CreatePatientResponse {
+  success: Boolean!
+  message: String!
+  data: Patient
+}
