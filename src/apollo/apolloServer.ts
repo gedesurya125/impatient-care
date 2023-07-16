@@ -25,5 +25,4 @@ const getTypeDefs = () => {
 export const apolloServer = new ApolloServer({
   typeDefs: getTypeDefs(),
   resolvers,
-  introspection: true,
 });
