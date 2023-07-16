@@ -5,7 +5,6 @@ import { Button, Box } from '@gedesurya125/surya-ui';
 
 import { PersonAdd } from './icon';
 import { PatientFormOverlay } from './PatientFormOverlay';
-import { PatientType } from '../../../server/types/patientTypes';
 
 import { ThemeUIStyleObject } from 'theme-ui';
 

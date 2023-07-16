@@ -30,7 +30,12 @@ export const patientResolvers = {
     },
   },
   Mutation: {
-    createPatient: async (parent: any, { input }, context: any, info: any) => {
+    createPatient: async (
+      parent: any,
+      { input }: { input: any },
+      context: any,
+      info: any
+    ) => {
       const patient = await context.prismaClient.patient.create({
         data: input,
       });
@@ -48,7 +53,7 @@ export const patientResolvers = {
     },
     updatePatient: async (
       parent: any,
-      { input },
+      { input }: { input: any },
       { prismaClient }: { prismaClient: PrismaClient },
       info: any
     ) => {

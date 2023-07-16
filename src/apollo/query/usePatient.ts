@@ -1,5 +1,4 @@
 import { useQuery, gql, useMutation } from '@apollo/client';
-import { PatientType } from '../../../../server/types/patientTypes';
 
 const PATIENT_FIELDS = gql`
   fragment patientFields on Patient {

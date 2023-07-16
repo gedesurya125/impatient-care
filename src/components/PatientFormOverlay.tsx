@@ -1,5 +1,5 @@
 import React from 'react';
-import { PatientType } from '../../../server/types/patientTypes';
+import { PatientType } from 'types/patientTypes';
 
 import { Overlay, Heading, Box } from '@gedesurya125/surya-ui';
 

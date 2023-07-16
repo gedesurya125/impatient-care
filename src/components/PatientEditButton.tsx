@@ -1,6 +1,6 @@
 import React from 'react';
 import { EditButton } from './EditIconButton';
-import { PatientType } from '../../../server/types/patientTypes';
+import { PatientType } from 'types/patientTypes';
 
 import { PatientFormOverlay } from './PatientFormOverlay';
 

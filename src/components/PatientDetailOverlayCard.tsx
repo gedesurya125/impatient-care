@@ -2,7 +2,7 @@ import React from 'react';
 
 // External Components
 import { Overlay, Box, Heading, Paragraph } from '@gedesurya125/surya-ui';
-import { PatientType } from '../../../server/types/patientTypes';
+import { PatientType } from 'types/patientTypes';
 import { patientKeyLabelPair } from 'data';
 import { CloseButton } from './CloseButton';
 

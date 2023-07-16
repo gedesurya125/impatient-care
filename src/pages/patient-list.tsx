@@ -10,7 +10,7 @@ import {
 } from '@gedesurya125/surya-ui';
 import { ThemeUIStyleObject, ButtonProps } from 'theme-ui';
 
-import { PatientType } from '../../../server/types/patientTypes';
+import { PatientType } from 'types/patientTypes';
 
 // Local Components
 

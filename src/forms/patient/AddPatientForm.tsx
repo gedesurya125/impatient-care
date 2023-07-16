@@ -12,7 +12,7 @@ import { createFormInitialValue } from 'utils';
 
 // Hooks
 import { useCreatePatient, useEditPatient } from 'apollo/query';
-import { PatientType } from '../../../../server/types/patientTypes';
+import { PatientType } from 'types/patientTypes';
 import { prepareValueForPatientApi } from './prepareValueForPatientApi';
 
 // Type

@@ -9,7 +9,7 @@ import {
   Box,
   Button,
 } from '@gedesurya125/surya-ui';
-import { PatientType } from '../../../server/types/patientTypes';
+import { PatientType } from 'types/patientTypes';
 
 import { patientFields } from 'data';
 import { FormFieldProps } from 'types';
