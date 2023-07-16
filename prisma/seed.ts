@@ -1,5 +1,5 @@
-import { prismaClient } from './client.js';
-import { seed as seedPatientData } from './seed/patient.js';
+import { prismaClient } from './client';
+import { seed as seedPatientData } from './seed/patient';
 
 async function main() {
   console.log('seeding patient');

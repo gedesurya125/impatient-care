@@ -1,4 +1,4 @@
-import { patientResolvers } from './patients.js';
+import { patientResolvers } from './patients';
 
 export const resolvers = {
   Query: {

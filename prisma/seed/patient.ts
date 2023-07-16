@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { faker } from '@faker-js/faker';
 
-import type { PatientType } from '../../types/patientTypes';
+import type { PatientType } from 'types/patientTypes';
 
 const PATIENTS_NUMBER = 50;
 

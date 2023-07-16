@@ -1,8 +1,7 @@
-import { prismaClient } from './client.js';
-
+import { prismaClient } from './client';
 
 async function drop() {
-  await prismaClient.patient.deleteMany()
+  await prismaClient.patient.deleteMany();
 }
 drop()
   .catch((e) => {
