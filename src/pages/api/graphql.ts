@@ -2,7 +2,6 @@ import { startServerAndCreateNextHandler } from '@as-integrations/next';
 
 import { apolloServer } from 'apollo/apolloServer';
 import { prismaClient } from '../../../prisma/client';
-import { allowCors } from 'utils';
 
 const handler = startServerAndCreateNextHandler(apolloServer, {
   context: async (req, res) => ({
@@ -13,4 +12,4 @@ const handler = startServerAndCreateNextHandler(apolloServer, {
 });
 
 // export default allowCors(handler);
-export default allowCors(handler);
+export default handler;
