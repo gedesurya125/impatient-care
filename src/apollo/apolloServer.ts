@@ -1,13 +1,9 @@
 import { ApolloServer } from '@apollo/server';
-import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
 
 import path from 'path';
 import { readdirSync, readFileSync } from 'fs';
-import { fileURLToPath } from 'url';
 
 // get the __dirname in ES module scope
-const filename = fileURLToPath(import.meta.url);
-const dirname = path.dirname(filename);
 
 import { resolvers } from './resolvers/index';
 
@@ -29,6 +25,4 @@ const getTypeDefs = () => {
 export const apolloServer = new ApolloServer({
   typeDefs: getTypeDefs(),
   resolvers,
-  // @ts-ignore
-  plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
 });
