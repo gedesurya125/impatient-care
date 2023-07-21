@@ -1,6 +1,6 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 
-const removeBranchAndScopeText = (url: string): string =>
+export const removeBranchAndScopeText = (url: string): string =>
   url.replace(/(?:-git.*(?=\.vercel))/g, '');
 
 const serverUrl = process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL
