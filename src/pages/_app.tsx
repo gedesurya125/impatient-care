@@ -21,10 +21,8 @@ import { config } from 'theme/config';
 import { MainLayout } from 'layouts';
 
 export default function App({ Component, pageProps }: AppProps) {
-  const serverUrl = process?.env?.NEXT_PUBLIC_VERCEL_BRANCH_URL
-    ? `https://${removeBranchAndScopeText(
-        process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL
-      )}/api/graphql`
+  const serverUrl = process?.env?.NEXT_PUBLIC_VERCEL_URL
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/graphql`
     : process.env.NEXT_PUBLIC_SERVER_URL;
 
   console.log('this is the serverUrl', serverUrl);
