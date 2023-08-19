@@ -13,16 +13,7 @@ const client = new ApolloClient({
   uri: serverUrl,
   cache: new InMemoryCache({
     typePolicies: {
-      Query: {
-        // fields: {
-        //   patients: {
-        //     keyArgs: false,
-        //     merge(existing = [], incoming) {
-        //       return [...existing, ...incoming];
-        //     },
-        //   },
-        // },
-      },
+      Query: {},
     },
   }),
 });
